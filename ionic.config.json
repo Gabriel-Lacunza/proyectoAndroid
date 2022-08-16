@@ -1,0 +1,7 @@
+{
+  "name": "ProIonicLacDuran",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
