@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { usuario } from 'src/app/model/usuario';
+import { Usuario } from 'src/app/model/Usuario';
 import { nivelEducacional } from '../../model/nivelEducacional';
 import { persona } from '../../model/persona';
 
@@ -12,7 +12,7 @@ import { persona } from '../../model/persona';
 })
 
 export class HomePage implements OnInit {
-  public usuario: usuario;
+  public usuario: Usuario;
   public nivelEducacion: nivelEducacional[] = new nivelEducacional().getNivelEducacional();
   public persona: persona = new persona();
 
