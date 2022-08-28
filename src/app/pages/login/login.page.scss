@@ -3,7 +3,36 @@ ion-content{
     --padding-bottom: 20px;
     --padding-end: 20px;
     --padding-start: 20px;
+
 }
 ion-item{
     --padding-bottom: 10px;
+}
+
+.background {
+    --background: url('/assets/img/palacio.jpg') no-repeat center/cover fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title-sys {
+    background-color: #020B25;
+}
+
+.logo {
+    width: 70%;
+}
+
+.welcome {
+    color: #FFFFFF;
+    padding-bottom: 20px;
+}
+
+.correo {
+    padding-bottom: 10px;
+}
+
+.login {
+    --background: #020B25;
 }
