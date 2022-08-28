@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/Usuario';
 import { nivelEducacional } from '../../model/nivelEducacional';
 import { persona } from '../../model/persona';
+import { AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,9 @@ import { persona } from '../../model/persona';
 })
 
 export class HomePage implements OnInit {
+
+  @ViewChild("icon", { read: ElementRef, static: true}) icon: ElementRef;
+
   public usuario: Usuario;
   public nivelEducacion: nivelEducacional[] = new nivelEducacional().getNivelEducacional();
   public persona: persona = new persona();
@@ -19,7 +23,8 @@ export class HomePage implements OnInit {
   constructor(
     private activeroute: ActivatedRoute,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private animationController: AnimationController
   ) { 
     this.activeroute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state){
@@ -31,6 +36,17 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public ngAfterViewInit(): void {
+    const animation = this.animationController
+      .create()
+      .addElement(this.icon.nativeElement)
+      .iterations(Infinity)
+      .duration(5000)
+      .fromTo("transform", "rotate(0)", "rotate(180deg)");
+    
+    animation.play();
   }
 
   public limpiarFormulario(): void {
