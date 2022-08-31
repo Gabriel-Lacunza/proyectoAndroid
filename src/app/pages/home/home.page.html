@@ -1,24 +1,29 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title class="ion-text-left ion-text">
+  <ion-toolbar color="dark">
+    <ion-title class="ion-text-center ion-text ion-margin">
       <ion-icon #icon name="settings-outline"></ion-icon>
-       home
+       Sistema de Asistencia Duoc UC
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+<ion-content [fullscreen]="true" class="ion-padding-horizontal" color="light">
   <ion-title class="ion-padding-top">
     <ion-label>
-      <h1 class="ion-text-center">¡bienvenido!</h1>
-      <p *ngIf="usuario">usuario: {{usuario.nombreUsuario}}</p>
+      <h1 class="ion-text-center">¡Bienvenido!</h1>
+      <h2 style="text-align: center; margin-top: 10px;" *ngIf="usuario">{{usuario.nombreUsuario}}</h2>
     </ion-label>
   </ion-title>
+  <h6 style="text-align: center; margin-top: 40px;">Escanea el código QR para registrar tu asistencia a clases</h6>
+  <div align="center"><img src="assets/img/QR.png"></div>
+  <ion-label>
+    <a routerLink="" class="finish">Cerrar sesión</a>
+  </ion-label>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="primary">
-    <ion-title class="ion-text-left ion-text">
-      home programado por Gabriel Lacunza
+  <ion-toolbar color="dark">
+    <ion-title class="ion-text-left ion-text" #titulo>
+      <img src="assets/img/logo.png" style="width: 150px;">
     </ion-title>
   </ion-toolbar>
 </ion-footer>

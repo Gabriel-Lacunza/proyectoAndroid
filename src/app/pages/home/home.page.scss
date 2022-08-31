@@ -1,3 +1,18 @@
 p{
     color: white;
 }
+
+.finish {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    color: blue;
+    margin-top: 30px;
+}
+
+.background1 {
+    --background: url('/assets/img/palacio1.jpg') no-repeat center/cover fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
