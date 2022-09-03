@@ -42,7 +42,6 @@ export class LoginPage implements OnInit {
     if (user){
       if(user.password === this.usuario.password) {
           console.log('Inicio de sesión correcto')
-          this.usuario.user = user;
       }else {
         console.log('No inicia sesión')
         this.mostrarMensaje('La contraseña no coincide con el e-mail registrado.')
