@@ -28,22 +28,27 @@ export class LoginPage implements OnInit {
  
 
   public ingresar(): void {
- 
+    const usuariosSistema = [
+      {username: "atorres@duocuc.cl", password: "1234", nombre: "Ana Torres Lelva", fraseSecreta: "nombre de tu mascota", respuestaSecreta: "gato"},
+      {username: "avalenzuela@duocuc.cl", password: "qwer", nombre: "Alberto Valenzuela Nuñez", fraseSecreta: "nombre de tu mejor amigo", respuestaSecreta: "juanito"},
+      {username: "cfuentes@duocuc.cl", password: "asdf", nombre: "Carla Fuentes Gonzales", fraseSecreta: "lugar de nacimiento de tu madre", respuestaSecreta: "valparaiso"}
+    ]
+    const user = usuariosSistema.find(user => user.username === this.usuario.nombreUsuario);
+
     if(!this.validarUsuario(this.usuario)) {
-      
       return;
     }
-    if ("atorres@duocuc.cl avalenzuela@duocuc.cl cfuentes@duocuc.cl".includes(this.usuario.nombreUsuario)){
-      if("atorres@duocuc.cl1234" === this.usuario.nombreUsuario+this.usuario.password
-          ||"avalenzuela@duocuc.clqwer" === this.usuario.nombreUsuario+this.usuario.password
-          ||"cfuentes@duocuc.clasdf"  === this.usuario.nombreUsuario+this.usuario.password) {
+
+    if (user){
+      if(user.password === this.usuario.password) {
           console.log('Inicio de sesión correcto')
       }else {
         console.log('No inicia sesión')
         this.mostrarMensaje('La contraseña no coincide con el e-mail registrado.')
         return;
       }
-    }else{
+    }
+    if (!user) {
       console.log('El correo no existe')
       this.mostrarMensaje('El email ingresado no está registrado.')
       return;
@@ -53,7 +58,7 @@ export class LoginPage implements OnInit {
     
     const navigationExtras: NavigationExtras = {
       state: {
-        usuario: this.usuario
+        usuario: user
       }
     };
     this.router.navigate(['/home'], navigationExtras);

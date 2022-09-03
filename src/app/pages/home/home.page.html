@@ -11,6 +11,8 @@
     <ion-label>
       <h1 class="ion-text-center">¡Bienvenido!</h1>
       <h2 style="text-align: center; margin-top: 10px;" *ngIf="usuario">{{usuario.nombreUsuario}}</h2>
+      <h1 class="ion-text-center">¡bienvenido!</h1>
+      <p *ngIf="usuario">usuario: {{usuario.nombre}}</p>
     </ion-label>
   </ion-title>
   <h6 style="text-align: center; margin-top: 40px;">Escanea el código QR para registrar tu asistencia a clases</h6>
