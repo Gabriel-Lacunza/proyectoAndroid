@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true" class="background" >
+  <ion-title class="ion-padding-top ion-text-center">
+    <ion-label>
+      <img src="assets/img/logo.png" class="logo">
+      <div class="title-sys">
+        <h2>Sistema de Asistencia Duoc UC</h2>
+      </div>
+    </ion-label>
+  </ion-title>
+  <div class="ion-padding-vertical">
+    <ion-card-content class="ion-text-center ion-padding-vertical">
+
+      <ion-card-title class="ion-text-center">
+        <ion-item class="correo">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="text" [(ngModel)]="usuario.nombreUsuario"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <h2>{{usuario.fraseSecreta}}</h2>
+          <ion-label position="floating">respuesta</ion-label>
+          <ion-input type="text" [(ngModel)]="usuario.respuesta"></ion-input>
+        </ion-item>
+      </ion-card-title>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-button class="login" shape="block" (click)="siguiente()">siguiente</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </div>
+  
+</ion-content>

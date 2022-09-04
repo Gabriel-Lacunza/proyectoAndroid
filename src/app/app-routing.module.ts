@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
+  { 
+    path: 'recuperar',
+    loadChildren: () => import('./pages/recuperar-contrasenna/recuperar-contrasenna.module').then( m => m.RecuperarContrasennaPageModule)
+  },
   {
     path: '',
     redirectTo: "login",
