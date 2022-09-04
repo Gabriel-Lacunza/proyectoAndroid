@@ -1,0 +1,38 @@
+.title-sys {
+    background-color: #020B25;
+    border-radius: 15px;
+}
+
+.color-content{
+    --ion-background-color: #FFFF;
+}
+
+.header {
+    --ion-toolbar-background: #d1ac44;
+}
+
+.tittle {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+  
+}
+
+.datos {
+    text-align: start;
+    color: #FFFF;
+    border: 1px solid;
+    font-size: small;
+}
+
+.finish {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    color: rgb(75, 166, 218);
+    margin-top: 30px;
+}
+
+.img{
+    width: 70%;
+    margin-top: 40px;
+}

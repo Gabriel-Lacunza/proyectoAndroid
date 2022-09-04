@@ -6,13 +6,39 @@ p{
     text-align: center;
     display: inline-block;
     width: 100%;
-    color: blue;
+    color: #FFFF;
     margin-top: 30px;
 }
 
-.background1 {
-    --background: url('/assets/img/palacio1.jpg') no-repeat center/cover fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.header {
+    --ion-toolbar-background: #d1ac44;
+}
+
+.content {
+    border: 1px solid;
+    margin-top: 20px;
+    padding-bottom: 70px;
+    background-color: rgb(6, 4, 27);
+    border-radius: 15px;
+}
+
+.tittle {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+  
+}
+
+.img{
+    width: 70%;
+    margin-top: 35px;
+}
+
+.color-content{
+    --ion-background-color: #FFFF;
+}
+
+.tt {
+    width: 50%;
+    margin-left: 50px;
+    margin-top: 10px;
 }

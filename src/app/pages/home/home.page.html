@@ -1,31 +1,43 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title class="ion-text-center ion-text ion-margin">
+<ion-header class="header background">
+  <ion-toolbar>
+    <ion-title class="ion-text-center ion-text ion-margin tittle">
       <ion-icon #icon name="settings-outline"></ion-icon>
-       Sistema de Asistencia Duoc UC
+       Sistema de Asistencia DUOC
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true" class="ion-padding-horizontal" color="light">
-  <ion-title class="ion-padding-top">
-    <ion-label>
-      <h1 class="ion-text-center">¡Bienvenido!</h1>
-      <h2 style="text-align: center; margin-top: 10px;" *ngIf="usuario">{{usuario.nombreUsuario}}</h2>
-      <h1 class="ion-text-center">¡bienvenido!</h1>
-      <p *ngIf="usuario">usuario: {{usuario.nombre}}</p>
-    </ion-label>
-  </ion-title>
-  <h6 style="text-align: center; margin-top: 40px;">Escanea el código QR para registrar tu asistencia a clases</h6>
-  <div align="center"><img src="assets/img/QR.png"></div>
-  <ion-label>
-    <a routerLink="" class="finish">Cerrar sesión</a>
-  </ion-label>
-</ion-content>
-
-<ion-footer>
-  <ion-toolbar color="dark">
-    <ion-title class="ion-text-left ion-text" #titulo>
-      <img src="assets/img/logo.png" style="width: 150px;">
+<ion-content [fullscreen]="true" class="color-content">
+  <div align="center"><img src="assets/img/logo.png" class="img"></div>
+  <ion-card-content class="content">
+    <ion-title class="ion-padding-top">
+      <ion-label>
+        <h1 class="ion-text-center">¡Bienvenido!</h1>
+        <h2 style="text-align: center; margin-top: 10px;" *ngIf="usuario">{{usuario.nombre}}</h2>
+      </ion-label>
     </ion-title>
-  </ion-toolbar>
-</ion-footer>
+    <h6 style="text-align: center; margin-top: 40px;">Lectura de Código QR</h6>
+    <input #fileinput hidden id="input-file" type="file" accept="image/*;capture=camera" 
+      (change)="verificarArchivoConQR($event.target.files)" />
+
+    <ion-button (click)="cargarImagenDesdeArchivo()" expand="full" shape="round">
+      <ion-icon slot="start" name="image-outline"></ion-icon>
+      Cargar Imagen con Código QR
+    </ion-button>
+
+    <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" shape="round">
+      <ion-icon slot="start" name="videocam-outline"></ion-icon>
+      Comenzar Escaneo de QR
+    </ion-button>
+
+    <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="full" shape="round">
+      <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+      Detener escaneo de QR
+    </ion-button>
+    <video #video [hidden]="!escaneando" width="100%"></video>
+    <canvas #canvas hidden></canvas>
+    <ion-label>
+      <a routerLink="/login" class="finish">Cerrar sesión</a>
+    </ion-label>
+    <div align="center"><img src="assets/img/tt.png" class="tt"></div>
+  </ion-card-content>
+</ion-content>
