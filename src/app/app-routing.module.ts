@@ -14,7 +14,11 @@ const routes: Routes = [
     path: '',
     redirectTo: "login",
     pathMatch: "full"
+  },  {
+    path: 'miclase',
+    loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },
+
 ];
 @NgModule({
   imports: [

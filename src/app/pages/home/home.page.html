@@ -31,29 +31,10 @@
     <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
     Detener escaneo de QR
   </ion-button>
-
-  <ion-button (click)="limpiarDatos()" expand="block" expand="full" shape="round">
-    <ion-icon slot="start" name="trash-outline"></ion-icon>
-    Limpiar datos
-  </ion-button>
-
   <video #video [hidden]="!escaneando" width="100%"></video>
   <canvas #canvas hidden></canvas>
   <ion-label>
-    <a routerLink="" class="finish">Cerrar sesión</a>
+    <a routerLink="/login" class="finish">Cerrar sesión</a>
   </ion-label>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Código QR</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <br>
-      Datos: {{ datosQR }}
-      <br><br>
-      Escaneando: {{ escaneando }}
-      <br>
-    </ion-card-content>
-  </ion-card>
 
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild,AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/Usuario';
 import { nivelEducacional } from '../../model/nivelEducacional';
@@ -14,7 +14,7 @@ import jsQR, { QRCode } from 'jsqr';
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage implements AfterViewInit {
+export class HomePage implements OnInit {
 
   @ViewChild("icon", { read: ElementRef, static: true}) icon: ElementRef;
   @ViewChild('titulo', { read: ElementRef, static: true}) titulo: ElementRef;
@@ -54,25 +54,25 @@ export class HomePage implements AfterViewInit {
   ngOnInit() {
   }
 
-  public ngAfterViewInit(): void {
-    const animation = this.animationController
-      .create()
-      .addElement(this.icon.nativeElement)
-      .iterations(Infinity)
-      .duration(5000)
-      .fromTo("transform", "rotate(0)", "rotate(380deg)");
+  // public ngAfterViewInit(): void {
+  //   const animation = this.animationController
+  //     .create()
+  //     .addElement(this.icon.nativeElement)
+  //     .iterations(Infinity)
+  //     .duration(5000)
+  //     .fromTo("transform", "rotate(0)", "rotate(380deg)");
     
-    animation.play();
+  //   animation.play();
 
-    const animation1 = this.animationController
-    .create()
-    .addElement(this.titulo.nativeElement)
-    .iterations(Infinity)
-    .duration(5000)
-    .fromTo('transform', 'translate(0%)', 'translate(100%)')
-    .fromTo('opacity', 1, 1);
-    animation1.play();
-  }
+  //   const animation1 = this.animationController
+  //   .create()
+  //   .addElement(this.titulo.nativeElement)
+  //   .iterations(Infinity)
+  //   .duration(5000)
+  //   .fromTo('transform', 'translate(0%)', 'translate(100%)')
+  //   .fromTo('opacity', 1, 1);
+  //   animation1.play();
+  // }
 
 
   public limpiarFormulario(): void {
@@ -142,9 +142,11 @@ export class HomePage implements AfterViewInit {
     context.drawImage(source? source : this.video.nativeElement, 0, 0, w, h);
     const img: ImageData = context.getImageData(0, 0, w, h);
     const qrCode: QRCode = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
+
     if (qrCode) {
       this.escaneando = false;
       this.datosQR = qrCode.data;
+      // console.log(this.datosQR); ENTRA
     }
     return this.datosQR !== '';
   }
@@ -158,6 +160,12 @@ export class HomePage implements AfterViewInit {
       }
       if (this.obtenerDatosQR()) {
         console.log(1);
+        const navigationExtras: NavigationExtras = {
+          state: {
+            datosQR: this.datosQR
+          }
+        }
+        this.router.navigate(['/miclase'],navigationExtras);
       } else {
         if (this.escaneando) {
           console.log(2);
@@ -184,6 +192,13 @@ export class HomePage implements AfterViewInit {
     const img = new Image();
     img.onload = () => {
       this.obtenerDatosQR(img);
+      //console.log(this.datosQR);
+      const navigationExtras: NavigationExtras = {
+        state: {
+          datosQR: this.datosQR
+        }
+      }
+      this.router.navigate(['/miclase'],navigationExtras);
     };
     img.src = URL.createObjectURL(file);
   }
