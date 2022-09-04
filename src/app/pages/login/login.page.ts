@@ -25,7 +25,13 @@ export class LoginPage implements OnInit {
     // this.usuario.password = '0205';
     // this.ingresar();
   }
- 
+  
+  public recuperar(): void{
+    const navigationExtras: NavigationExtras = {
+      state: {}
+    };
+    this.router.navigate(['/recuperar'], navigationExtras);
+  }
 
   public ingresar(): void {
     const usuariosSistema = [
