@@ -13,13 +13,13 @@
       <ion-card-title class="ion-text-center">
         <ion-item class="correo">
           <ion-label position="floating">Correo</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.nombreUsuario"></ion-input>
+          <ion-input type="text" [(ngModel)]="usuario.nombreUsuario" placeholder="Ingresa tu correo"></ion-input>
         </ion-item>
         <br>
         <ion-item>
           <h2>{{usuario.fraseSecreta}}</h2>
-          <ion-label position="floating">respuesta</ion-label>
-          <ion-input type="text" [(ngModel)]="usuario.respuesta"></ion-input>
+          <ion-label position="floating">Respuesta</ion-label>
+          <ion-input type="text" [(ngModel)]="usuario.respuesta" placeholder="Escribe aquí tu respuesta"></ion-input>
         </ion-item>
       </ion-card-title>
 
