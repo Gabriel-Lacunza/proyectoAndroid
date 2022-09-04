@@ -1,62 +1,68 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title class="ion-text-center ion-text ion-margin">
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-title class="ion-text-center ion-text ion-margin tittle">
       <ion-icon #icon name="settings-outline"></ion-icon>
-       Sistema de Asistencia Duoc UC
+       Sistema de Asistencia DUOC
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="color-content">
   <ion-title class="ion-padding-top">
     <ion-label>
-      <h1 class="ion-text-center">DATOS DE LA ASIGNATURA</h1>
+      <div class="title-sys">
+        <h2 class="ion-text-center">DATOS DE LA ASIGNATURA</h2>
+      </div>
     </ion-label>
     <ion-card>
       <ion-card-content>
         <ion-grid fixed>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Sede:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.sede}}</ion-col>
+            <ion-col size="6" class="datos">Sede:</ion-col>
+            <ion-col size="6" class="datos">{{data.sede}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Sigla:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.idAsignatura}}</ion-col>
+            <ion-col size="6" class="datos">Sigla:</ion-col>
+            <ion-col size="6" class="datos">{{data.idAsignatura}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Sección:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.seccion}}</ion-col>
+            <ion-col size="6" class="datos">Sección:</ion-col>
+            <ion-col size="6" class="datos">{{data.seccion}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Nombre asignatura:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.nombreAsignatura}}</ion-col>
+            <ion-col size="6" class="datos">Nombre asignatura:</ion-col>
+            <ion-col size="6" class="datos">{{data.nombreAsignatura}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Nombre profesor:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.nombreProfesor}}</ion-col>
+            <ion-col size="6" class="datos">Nombre profesor:</ion-col>
+            <ion-col size="6" class="datos">{{data.nombreProfesor}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Día:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.dia}}</ion-col>
+            <ion-col size="6" class="datos">Día:</ion-col>
+            <ion-col size="6" class="datos">{{data.dia}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Bloque de inicio:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.bloqueInicio}}</ion-col>
+            <ion-col size="6" class="datos">Bloque de inicio:</ion-col>
+            <ion-col size="6" class="datos">{{data.bloqueInicio}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Bloque de término:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.bloqueTermino}}</ion-col>
+            <ion-col size="6" class="datos">Bloque de término:</ion-col>
+            <ion-col size="6" class="datos">{{data.bloqueTermino}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Hora de inicio:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.horaInicio}}</ion-col>
+            <ion-col size="6" class="datos">Hora de inicio:</ion-col>
+            <ion-col size="6" class="datos">{{data.horaInicio}}</ion-col>
           </ion-row>
           <ion-row style="text-align: center;">
-            <ion-col size="6" style="text-align: start;">Hora de término:</ion-col>
-            <ion-col size="6" style="text-align: start;">{{data.horaFin}}</ion-col>
+            <ion-col size="6" class="datos">Hora de término:</ion-col>
+            <ion-col size="6" class="datos">{{data.horaFin}}</ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>
+    <ion-label>
+      <a routerLink="/login" class="finish">Cerrar sesión</a>
+    </ion-label>
+    <div align="center"><img src="assets/img/logo.png" class="img"></div>
   </ion-title>
 </ion-content>

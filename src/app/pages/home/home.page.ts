@@ -54,15 +54,15 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
-  // public ngAfterViewInit(): void {
-  //   const animation = this.animationController
-  //     .create()
-  //     .addElement(this.icon.nativeElement)
-  //     .iterations(Infinity)
-  //     .duration(5000)
-  //     .fromTo("transform", "rotate(0)", "rotate(380deg)");
+  public ngAfterViewInit(): void {
+    const animation = this.animationController
+      .create()
+      .addElement(this.icon.nativeElement)
+      .iterations(Infinity)
+      .duration(5000)
+      .fromTo("transform", "rotate(0)", "rotate(380deg)");
     
-  //   animation.play();
+    animation.play();
 
   //   const animation1 = this.animationController
   //   .create()
@@ -72,7 +72,7 @@ export class HomePage implements OnInit {
   //   .fromTo('transform', 'translate(0%)', 'translate(100%)')
   //   .fromTo('opacity', 1, 1);
   //   animation1.play();
-  // }
+  }
 
 
   public limpiarFormulario(): void {

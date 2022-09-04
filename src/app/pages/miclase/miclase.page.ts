@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-miclase',
@@ -8,12 +9,14 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 })
 export class MiclasePage implements OnInit {
 
+  @ViewChild("icon", { read: ElementRef, static: true}) icon: ElementRef;
   public datosQR: string;
   public data: object;
 
   constructor(
     private activeroute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private animationController: AnimationController,
   ) { 
     this.activeroute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -33,5 +36,16 @@ export class MiclasePage implements OnInit {
     this.data = JSON.parse(this.datosQR);
   }
 
+  public ngAfterViewInit(): void {
+    const animation = this.animationController
+      .create()
+      .addElement(this.icon.nativeElement)
+      .iterations(Infinity)
+      .duration(5000)
+      .fromTo("transform", "rotate(0)", "rotate(380deg)");
+    
+    animation.play();
 
+
+}
 }
