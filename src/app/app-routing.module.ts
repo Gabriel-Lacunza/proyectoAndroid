@@ -11,14 +11,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: '',
-    redirectTo: "login",
-    pathMatch: "full"
-  },  {
     path: 'miclase',
     loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },
-
+  { 
+    path: 'recuperar',
+    loadChildren: () => import('./pages/recuperar-contrasenna/recuperar-contrasenna.module').then( m => m.RecuperarContrasennaPageModule)
+  },
+  {
+    path: '',
+    redirectTo: "login",
+    pathMatch: "full"
+  },
 ];
 @NgModule({
   imports: [

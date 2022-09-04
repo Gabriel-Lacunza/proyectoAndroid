@@ -1,6 +1,8 @@
 export class Usuario {
     public nombreUsuario = '';
     public password = '';
+    public fraseSecreta = "";
+    public respuesta = "";
 
     public validarNombreUsuario(): string {
       if (this.nombreUsuario.trim() === '') {
