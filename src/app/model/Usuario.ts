@@ -1,7 +1,7 @@
 export class Usuario {
     public nombreUsuario = '';
     public password = '';
-   
+
     public validarNombreUsuario(): string {
       if (this.nombreUsuario.trim() === '') {
         return 'Para ingresar al sistema debe ingresar un correo.';

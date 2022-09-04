@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
     }
  
     this.mostrarMensaje('¡Bienvenido!');
- 
+    
     const navigationExtras: NavigationExtras = {
       state: {
         usuario: user

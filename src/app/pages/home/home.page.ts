@@ -15,6 +15,7 @@ import { AnimationController } from '@ionic/angular';
 export class HomePage implements OnInit {
 
   @ViewChild("icon", { read: ElementRef, static: true}) icon: ElementRef;
+  @ViewChild('titulo', { read: ElementRef, static: true}) titulo: ElementRef;
 
   public usuario: Usuario;
   public nivelEducacion: nivelEducacional[] = new nivelEducacional().getNivelEducacional();
@@ -44,10 +45,20 @@ export class HomePage implements OnInit {
       .addElement(this.icon.nativeElement)
       .iterations(Infinity)
       .duration(5000)
-      .fromTo("transform", "rotate(0)", "rotate(180deg)");
+      .fromTo("transform", "rotate(0)", "rotate(380deg)");
     
     animation.play();
+
+    const animation1 = this.animationController
+    .create()
+    .addElement(this.titulo.nativeElement)
+    .iterations(Infinity)
+    .duration(5000)
+    .fromTo('transform', 'translate(0%)', 'translate(100%)')
+    .fromTo('opacity', 1, 1);
+    animation1.play();
   }
+
 
   public limpiarFormulario(): void {
     for (const [key, value] of Object.entries(this.persona)){
