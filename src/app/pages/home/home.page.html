@@ -11,11 +11,11 @@
   <ion-card-content class="content">
     <ion-title class="ion-padding-top">
       <ion-label>
-        <h1 class="ion-text-center">¡Bienvenido!</h1>
-        <h2 style="text-align: center; margin-top: 10px;" *ngIf="usuario">{{usuario.nombre}}</h2>
+        <h1 class="ion-text-center bienvenido">¡Bienvenido!</h1>
+        <h2 class="nombre" *ngIf="usuario">{{usuario.nombre}}</h2>
       </ion-label>
     </ion-title>
-    <h6 style="text-align: center; margin-top: 40px;">Lectura de Código QR</h6>
+    <h6 class="lectura">Lectura de Código QR</h6>
     <input #fileinput hidden id="input-file" type="file" accept="image/*;capture=camera" 
       (change)="verificarArchivoConQR($event.target.files)" />
 

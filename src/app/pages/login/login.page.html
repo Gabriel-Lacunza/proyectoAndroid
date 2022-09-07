@@ -2,7 +2,7 @@
   <ion-title class="ion-padding-top ion-text-center">
     <ion-label>
       <img src="assets/img/logo.png" class="logo">
-      <div class="title-sys">
+      <div class="title-sistem">
         <h2>Sistema de Asistencia Duoc UC</h2>
       </div>
     </ion-label>
@@ -11,14 +11,14 @@
     <ion-card-content class="ion-text-center ion-padding-vertical">
  
       <ion-card-title class="ion-text-center">
-        <ion-label>
-          <h2 class="welcome">¡Bienvenido!</h2>
-        </ion-label>
-        <ion-item class="correo" style="border-radius: 15px;">
+        <div class="welcome">
+          <h2>¡Bienvenido!</h2>
+        </div>
+        <ion-item class="correo">
           <ion-label position="floating">Correo</ion-label>
           <ion-input type="text" [(ngModel)]="usuario.nombreUsuario" placeholder="Ingrese su correo"></ion-input>
         </ion-item>
-        <ion-item style="border-radius: 15px;">
+        <ion-item class="password">
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input type="password" [(ngModel)]="usuario.password" placeholder="Ingrese su contraseña"></ion-input>
         </ion-item>
@@ -29,9 +29,9 @@
         </ion-row>
       </ion-card-title>
       
-      <ion-label>
-        <a routerLink="" style="color: #FFFFFF;" (click)="recuperar()">Recuperar contraseña</a>
-      </ion-label>
+      <div class="recuperar-pass">
+        <a routerLink=""  (click)="recuperar()">Recuperar contraseña</a>
+      </div>
     </ion-card-content>
   </div>
   
