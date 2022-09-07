@@ -16,25 +16,54 @@ ion-item{
     background-size: cover;
 }
 
-.title-sys {
+.title-sistem h2 {
     background-color: #020B25;
     border-radius: 15px;
+    color: #FFFF;
 }
 
 .logo {
     width: 70%;
 }
 
-.welcome {
+.welcome h2{
     color: #FFFFFF;
-    padding-bottom: 20px;
+    background-color: #df973a;
+    border-radius: 15px;
+    width: 50%;
+    margin: auto;
 }
 
 .correo {
+    margin-top: 10px;
     margin-bottom: 10px;
+    --background: #333333;
+    border-radius: 15px;
+    ion-label {
+        --color: #FFFF;
+    }
+    ion-input {
+        --color: #FFFF;
+    }
 }
 
 .login {
     --background: #020B25;
     border-radius: 15px;
+}
+
+.password {
+    border-radius: 15px;
+    --background: #333333;
+    ion-label {
+        --color: #FFFF;
+    }
+    ion-input {
+        --color: #FFFF;
+    }
+}
+
+.recuperar-pass a{
+    background-color: #333333;;
+    color: #FFFFFF;
 }
