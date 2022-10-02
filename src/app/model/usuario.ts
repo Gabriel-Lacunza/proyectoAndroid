@@ -26,4 +26,23 @@ export class Usuario {
         || this.validarPassword();
     }
   }
-  
+
+type usuarios = {
+  nombreUsuario: string, 
+  password: string, 
+  nombre: string, 
+  fraseSecreta: string, 
+  respuesta: string
+}
+
+const usuariosSistema: usuarios[] = [
+  {nombreUsuario: "atorres@duocuc.cl", password: "1234", nombre: "Ana Torres Lelva", fraseSecreta: "nombre de tu mascota", respuesta: "gato"},
+  {nombreUsuario: "avalenzuela@duocuc.cl", password: "qwer", nombre: "Alberto Valenzuela Nuñez", fraseSecreta: "nombre de tu mejor amigo", respuesta: "juanito"},
+  {nombreUsuario: "cfuentes@duocuc.cl", password: "asdf", nombre: "Carla Fuentes Gonzales", fraseSecreta: "lugar de nacimiento de tu madre", respuesta: "valparaiso"}
+]
+
+export const buscarUsuario = (nombreUsuario: string) => {
+  const e = usuariosSistema.find(user => user.nombreUsuario === nombreUsuario);
+  if (!e) return "no user"
+  return e
+};
