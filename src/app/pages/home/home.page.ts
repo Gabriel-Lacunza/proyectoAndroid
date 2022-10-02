@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/Usuario';
 import { nivelEducacional } from '../../model/nivelEducacional';
-import { persona } from '../../model/persona';
+import { persona } from '../../model/Persona';
 import { AnimationController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
