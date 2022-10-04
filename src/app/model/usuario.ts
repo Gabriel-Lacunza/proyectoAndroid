@@ -1,6 +1,7 @@
 export class Usuario {
     public nombreUsuario = '';
     public password = '';
+    public nombre = "";
     public fraseSecreta = "";
     public respuesta = "";
 
@@ -43,6 +44,6 @@ const usuariosSistema: usuarios[] = [
 
 export const buscarUsuario = (nombreUsuario: string) => {
   const e = usuariosSistema.find(user => user.nombreUsuario === nombreUsuario);
-  if (!e) return "no user"
+  if (!e) return {nombreUsuario: "", password: "", nombre: "", fraseSecreta: "", respuesta: ""}
   return e
 };

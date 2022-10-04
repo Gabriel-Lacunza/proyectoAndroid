@@ -23,6 +23,19 @@ const routes: Routes = [
     redirectTo: "login",
     pathMatch: "full"
   },
+  {
+    path: 'rs',
+    loadChildren: () => import('./pages/ingreso-respuesta-secreta/ingreso-respuesta-secreta.module').then( m => m.IngresoRespuestaSecretaPageModule)
+  },  {
+    path: 'correcto',
+    loadChildren: () => import('./pages/correcto/correcto.module').then( m => m.CorrectoPageModule)
+  },
+  {
+    path: 'incorrecto',
+    loadChildren: () => import('./pages/incorrecto/incorrecto.module').then( m => m.IncorrectoPageModule)
+  },
+
+
 ];
 @NgModule({
   imports: [
