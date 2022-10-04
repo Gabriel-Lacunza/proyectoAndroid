@@ -42,6 +42,7 @@ export class HomePage implements OnInit {
     private animationController: AnimationController,
     private loadingController: LoadingController
   ) { 
+    this.router.navigate(["/home/inico"])
     this.activeroute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state){
         this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
@@ -201,6 +202,10 @@ export class HomePage implements OnInit {
       this.router.navigate(['/miclase'],navigationExtras);
     };
     img.src = URL.createObjectURL(file);
+  }
+
+  segmentChanged($event) {
+    this.router.navigate(['home/' + $event.detail.value]);
   }
 }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Alert } from 'selenium-webdriver';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario, buscarUsuario } from 'src/app/model/Usuario';
  
 @Component({
   selector: 'app-login',
@@ -34,16 +34,7 @@ export class LoginPage implements OnInit {
   }
 
   public ingresar(): void {
-    const usuariosSistema = [
-      {username: "atorres@duocuc.cl", password: "1234", nombre: "Ana Torres Lelva", fraseSecreta: "nombre de tu mascota", respuestaSecreta: "gato"},
-      {username: "avalenzuela@duocuc.cl", password: "qwer", nombre: "Alberto Valenzuela Nuñez", fraseSecreta: "nombre de tu mejor amigo", respuestaSecreta: "juanito"},
-      {username: "cfuentes@duocuc.cl", password: "asdf", nombre: "Carla Fuentes Gonzales", fraseSecreta: "lugar de nacimiento de tu madre", respuestaSecreta: "valparaiso"}
-    ]
-    const user = usuariosSistema.find(user => user.username === this.usuario.nombreUsuario);
-
-    if(!this.validarUsuario(this.usuario)) {
-      return;
-    }
+    const user = buscarUsuario(this.usuario.nombreUsuario);
 
     if (user){
       if(user.password === this.usuario.password) {
@@ -68,18 +59,6 @@ export class LoginPage implements OnInit {
       }
     };
     this.router.navigate(['/home'], navigationExtras);
-  }
- 
-  public validarUsuario(usuario: Usuario): boolean {
- 
-    const mensajeError = usuario.validarUsuario();
- 
-    if (mensajeError) {
-      this.mostrarMensaje(mensajeError);
-      return false;
-    }
- 
-    return true;
   }
  
   /**
