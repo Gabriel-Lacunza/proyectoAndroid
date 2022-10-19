@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/Usuario';
 import { nivelEducacional } from '../../model/nivelEducacional';
-import { persona } from '../../model/Persona';
+import { persona } from '../../model/persona';
 import { AnimationController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
@@ -42,7 +42,6 @@ export class HomePage implements OnInit {
     private animationController: AnimationController,
     private loadingController: LoadingController
   ) { 
-    this.router.navigate(["/home/inico"])
     this.activeroute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state){
         this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
@@ -204,8 +203,10 @@ export class HomePage implements OnInit {
     img.src = URL.createObjectURL(file);
   }
 
-  segmentChanged($event) {
-    this.router.navigate(['home/' + $event.detail.value]);
+  cerrarSesion() {
+    const navigationExtras: NavigationExtras = {
+        };
+    this.router.navigate(['/login'], navigationExtras);
   }
 }
 

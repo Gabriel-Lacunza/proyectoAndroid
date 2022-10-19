@@ -1,60 +1,81 @@
-p{
-    color: white;
-}
-
-.finish {
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-    color: #FFFF;
-    margin-top: 30px;
-}
-
 .header {
-    --ion-toolbar-background: #d1ac44;
+    --ion-toolbar-background: white;
 }
 
-.content {
-    border: 1px solid;
-    margin-top: 20px;
-    padding-bottom: 50px;
-    background-color: rgb(6, 4, 27);
-    border-radius: 15px;
+.logo{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 7px;
 }
 
-.tittle {
+.titulo {
+    font-family: 'Calibri';
+    text-align: center;
+    font-size: 20px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
-  
 }
 
-.img{
-    width: 70%;
-    margin-top: 35px;
+.background{
+    --background: url('/assets/img/asistencia.jpg') no-repeat center/cover fixed;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
 }
 
-.color-content{
-    --ion-background-color: #FFFF;
+#container {
+    border-radius: 6px;
+    box-shadow: 0 10px 30px #000;
+    --ion-safe-area-bottom: 22px;
+    --ion-safe-area-top: 20px;
+    margin-top: 70px;
+    --background: url('/assets/img/borroso.png') no-repeat center/cover fixed;
 }
 
-.tt {
-    width: 50%;
-    margin-left: 50px;
-    margin-top: 10px;
+.filter {
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    --ion-toolbar-background: rgba(243, 243, 242, 0.2);
 }
 
-.bienvenido {
-    color: #FFFF;
+.subtitulo{
+    font-family: 'Calibri';
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
 
-.nombre {
-    color: #FFFF;
-    text-align: center; 
-    margin-top: 10px;
+
+.boton {
+    --ion-toolbar-background: white;
+    --background: #020B25;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
 
-.lectura {
-    text-align: center; 
-    margin-top: 40px;
-    color: #FFFF;
+.input {
+    --ion-toolbar-background: white;
+    --background: #020B25;
+    --highlight-background: rgb(107, 197, 107);
+    color: white;
+}
+
+.cerrarsesion{
+    --ion-toolbar-background: white;
+    --background: #df973a;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.bienvenido{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 22px;
 }

@@ -19,20 +19,25 @@ const routes: Routes = [
     loadChildren: () => import('./pages/recuperar-contrasenna/recuperar-contrasenna.module').then( m => m.RecuperarContrasennaPageModule)
   },
   {
-    path: '',
-    redirectTo: "login",
-    pathMatch: "full"
-  },
-  {
     path: 'rs',
     loadChildren: () => import('./pages/ingreso-respuesta-secreta/ingreso-respuesta-secreta.module').then( m => m.IngresoRespuestaSecretaPageModule)
-  },  {
+  },
+  {
     path: 'correcto',
     loadChildren: () => import('./pages/correcto/correcto.module').then( m => m.CorrectoPageModule)
   },
   {
     path: 'incorrecto',
     loadChildren: () => import('./pages/incorrecto/incorrecto.module').then( m => m.IncorrectoPageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/no-encontrado/no-encontrado.module').then( m => m.NoEncontradoPageModule)
+  },
+  {
+    path: '',
+    redirectTo: "login",
+    pathMatch: "full"
   },
 
 
