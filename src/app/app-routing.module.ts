@@ -31,13 +31,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/incorrecto/incorrecto.module').then( m => m.IncorrectoPageModule)
   },
   {
-    path: '**',
-    loadChildren: () => import('./pages/no-encontrado/no-encontrado.module').then( m => m.NoEncontradoPageModule)
-  },
-  {
     path: '',
     redirectTo: "login",
     pathMatch: "full"
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/no-encontrado/no-encontrado.module').then( m => m.NoEncontradoPageModule)
   },
 
 

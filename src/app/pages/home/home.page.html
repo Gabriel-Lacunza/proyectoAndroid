@@ -2,7 +2,20 @@
   <ion-toolbar >
     <ion-title><img class="logo" src="assets/img/logo.png"></ion-title>
   </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment class="segmento" value="pizza" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="inicio">
+        <ion-label>inicio</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="mi-clase">
+        <ion-label>mi clase</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header> 
+
 <ion-content [fullscreen]="true" class="background">
   <ion-card id="container" class="filter">
     <ion-header>
