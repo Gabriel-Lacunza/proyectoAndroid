@@ -1,7 +1,49 @@
-<p>
-  inicio works!
-</p>
-
 <ion-content>
-  <ion-title>Title</ion-title>
+  <ion-card id="container" class="filter">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="titulo">
+          <h1><ion-icon #icon name="settings-outline" style="width: 25px; height: 25px;"></ion-icon> Sistema de Asistencia DUOC</h1>
+        </ion-title>
+        <ion-card-subtitle class="bienvenido">
+          <p>¡Bienvenido!</p>
+        </ion-card-subtitle>
+        <ion-card-subtitle class="subtitulo">
+          <h5 *ngIf="usuario">{{usuario.nombre}}</h5>
+        </ion-card-subtitle>
+        <ion-card-subtitle class="subtitulo">
+          <h5>Lectura de Código QR</h5>
+        </ion-card-subtitle>
+        <input #fileinput hidden id="input-file" type="file" accept="image/*;capture=camera" (change)="verificarArchivoConQR($event.target.files)" />
+
+        <ion-button (click)="cargarImagenDesdeArchivo()" expand="full" shape="round" class="boton">
+          <ion-icon slot="start" name="image-outline"></ion-icon>
+          Cargar Imagen con Código QR
+        </ion-button>
+
+        <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" shape="round" class="boton">
+          <ion-icon slot="start" name="videocam-outline"></ion-icon>
+          Comenzar Escaneo de QR
+        </ion-button>
+
+        <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="full" shape="round">
+          <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+          Detener escaneo de QR
+        </ion-button>
+        <video #video [hidden]="!escaneando" width="100%"></video>
+        <canvas #canvas hidden></canvas>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button class="cerrarsesion" shape="block" (click)="cerrarSesion()">Cerrar sesión</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-toolbar>
+    </ion-header>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>
