@@ -1,21 +1,23 @@
-<ion-content>
+<ion-content [fullscreen]="true" class="background">
   <ion-card id="container" class="filter">
     <ion-header>
       <ion-toolbar>
         <ion-title class="titulo">
-          <h1><ion-icon #icon name="settings-outline" style="width: 25px; height: 25px;"></ion-icon> Sistema de Asistencia DUOC</h1>
+          <ion-icon #icon name="settings-outline" style="width: 25px; height: 25px;"></ion-icon>
+          <h1>Sistema de Asistencia DUOC</h1>
         </ion-title>
         <ion-card-subtitle class="bienvenido">
           <p>¡Bienvenido!</p>
         </ion-card-subtitle>
-        <br>
         <ion-card-subtitle class="subtitulo">
           <h5 *ngIf="usuario">{{usuario.nombre}}</h5>
         </ion-card-subtitle>
         <ion-card-subtitle class="subtitulo">
           <h5>Lectura de Código QR</h5>
         </ion-card-subtitle>
-        <input #fileinput hidden id="input-file" type="file" accept="image/*;capture=camera" (change)="verificarArchivoConQR($event.target.files)" />
+
+        <input #fileinput hidden id="input-file" type="file" accept="image/*;capture=camera" 
+          (change)="verificarArchivoConQR($event.target.files)" />
 
         <ion-button (click)="cargarImagenDesdeArchivo()" expand="full" shape="round" class="boton">
           <ion-icon slot="start" name="image-outline"></ion-icon>
@@ -42,9 +44,3 @@
     </ion-header>
   </ion-card>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>Footer</ion-title>
-  </ion-toolbar>
-</ion-footer>

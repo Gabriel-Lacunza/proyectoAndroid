@@ -1,21 +1,18 @@
 <ion-header class="header">
-  <ion-toolbar>
-    <ion-title class="ion-text-center ion-text ion-margin tittle">
-      <ion-icon #icon name="settings-outline"></ion-icon>
-       Sistema de Asistencia DUOC
-    </ion-title>
+  <ion-toolbar >
+    <ion-title><img class="logo" src="assets/img/logo.png"></ion-title>
   </ion-toolbar>
-</ion-header>
-
-<ion-content class="color-content">
-  <ion-title class="ion-padding-top">
-    <ion-label>
-      <div class="title-sys">
-        <h2 class="ion-text-center">DATOS DE LA ASIGNATURA</h2>
-      </div>
-    </ion-label>
-    <ion-card style="background-color: #333333;;">
-      <ion-card-content>
+</ion-header> 
+<ion-content [fullscreen]="true" class="background">
+  <ion-card id="container" class="filter">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="titulo">
+          <h1>Sistema de Asistencia DUOC</h1>
+        </ion-title>
+        <ion-card-subtitle class="subtitulo">
+          <h5>DATOS DE LA ASIGNATURA</h5>
+        </ion-card-subtitle>
         <ion-grid fixed>
           <ion-row style="text-align: center;">
             <ion-col size="6" class="datos">Sede:</ion-col>
@@ -58,11 +55,12 @@
             <ion-col size="6" class="datos">{{data.horaFin}}</ion-col>
           </ion-row>
         </ion-grid>
-      </ion-card-content>
-    </ion-card>
-    <ion-label>
-      <a routerLink="/login" class="finish">Cerrar sesión</a>
-    </ion-label>
-    <div align="center"><img src="assets/img/logo.png" class="img"></div>
-  </ion-title>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button class="cerrarsesion" shape="block" (click)="cerrarSesion()">Cerrar sesión</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-toolbar>
+    </ion-header>
+  </ion-card>
 </ion-content>

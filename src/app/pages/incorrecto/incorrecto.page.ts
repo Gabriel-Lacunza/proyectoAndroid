@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/model/Usuario';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-incorrecto',
@@ -26,5 +26,11 @@ export class IncorrectoPage implements OnInit {
   }
 
   ngOnInit() { }
+
+  iniciarSesion() {
+    const navigationExtras: NavigationExtras = {
+        };
+    this.router.navigate(['/login'], navigationExtras);
+  }
 
 }

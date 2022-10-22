@@ -58,4 +58,10 @@ export class IngresoRespuestaSecretaPage implements OnInit {
 
     await alert.present();
   }
+
+  iniciarSesion() {
+    const navigationExtras: NavigationExtras = {
+        };
+    this.router.navigate(['/login'], navigationExtras);
+  }
 }
