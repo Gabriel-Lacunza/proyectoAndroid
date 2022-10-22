@@ -21,9 +21,8 @@ export class LoginPage implements OnInit {
  
   public ngOnInit(): void {
  
-    // this.usuario.nombreUsuario = 'be.duran@duocuc.cl';
-    // this.usuario.password = '0205';
-    // this.ingresar();
+    this.usuario.nombreUsuario = 'atorres@duocuc.cl';
+    this.usuario.password = '1234';
   }
   
   public recuperar(): void{
@@ -50,8 +49,6 @@ export class LoginPage implements OnInit {
       this.mostrarMensaje('El email ingresado no está registrado.')
       return;
     }
- 
-    this.mostrarMensaje('¡Bienvenido!');
     
     const navigationExtras: NavigationExtras = {
       state: {

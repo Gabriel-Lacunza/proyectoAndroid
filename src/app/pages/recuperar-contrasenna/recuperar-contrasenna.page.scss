@@ -47,16 +47,34 @@
     font-family: 'Calibri';
     text-align: center;
     color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 
 .boton {
     --ion-toolbar-background: white;
     --background: #020B25;
+    color: white;
 }
 
 .input {
     --ion-toolbar-background: white;
     --background: #020B25;
     --highlight-background: rgb(107, 197, 107);
+    color: white;
+}
+
+.recuperar-pass{
+    margin-left: auto;
+    font-family: 'Calibri';
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+
+a {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }

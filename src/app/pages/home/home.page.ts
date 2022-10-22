@@ -24,17 +24,20 @@ export class HomePage implements OnInit {
     private animationController: AnimationController,
     private loadingController: LoadingController
   ) { 
-    this.router.navigate(['home/inicio']);
     this.activeroute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state){
         this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
-      }/*else{
-        this.router.navigate(["/login"]);
-      }*/
+      }
     });
   }
 
   ngOnInit(): void {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario
+      }
+    };
+    this.router.navigate(['home/inicio'],navigationExtras);
       
   }
 

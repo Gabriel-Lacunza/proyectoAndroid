@@ -16,13 +16,16 @@ export class RecuperarContrasennaPage implements OnInit {
     this.usuario.nombreUsuario = '';
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    this.usuario.nombreUsuario = 'atorres@duocuc.cl';
+    this.usuario.password = '1234';
+
+    // this.siguiente();
+
   }
 
   siguiente() {
     const users = buscarUsuario(this.usuario.nombreUsuario);
-
-    if (users){
       if (this.usuario.nombreUsuario === users.nombreUsuario){
         const navigationExtras: NavigationExtras = {
           state: {
@@ -31,6 +34,11 @@ export class RecuperarContrasennaPage implements OnInit {
         };
         this.router.navigate(['/rs'], navigationExtras);
       }
-    }
+  }
+
+  iniciarSesion() {
+    const navigationExtras: NavigationExtras = {
+        };
+    this.router.navigate(['/login'], navigationExtras);
   }
 }
