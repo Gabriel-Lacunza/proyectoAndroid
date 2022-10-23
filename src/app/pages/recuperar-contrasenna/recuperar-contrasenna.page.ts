@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
-import { buscarUsuario, Usuario } from 'src/app/model/Usuario';
+//import { buscarUsuario, Usuario } from 'src/app/model/Usuario';
+import {  Usuario } from 'src/app/model/Usuario';
 
 @Component({
   selector: 'app-recuperar-contrasenna',
@@ -23,7 +24,7 @@ export class RecuperarContrasennaPage implements OnInit {
     // this.siguiente();
 
   }
-
+  /*
   siguiente() {
     const users = buscarUsuario(this.usuario.nombreUsuario);
       if (this.usuario.nombreUsuario === users.nombreUsuario){
@@ -34,7 +35,7 @@ export class RecuperarContrasennaPage implements OnInit {
         };
         this.router.navigate(['/rs'], navigationExtras);
       }
-  }
+  }*/
 
   iniciarSesion() {
     const navigationExtras: NavigationExtras = {

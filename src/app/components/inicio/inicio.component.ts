@@ -8,6 +8,9 @@ import { AnimationController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
 
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { StorageService } from 'src/app/services/storage.service';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -39,7 +42,9 @@ export class InicioComponent implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private animationController: AnimationController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private auth: AuthenticationService,
+    private storage: StorageService
   ) { 
     this.activeroute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state){
@@ -50,8 +55,9 @@ export class InicioComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
     console.log("hola mundo");
+    console.log('ESTOY EN HOME PAGE ', await this.storage.getItem('USER_DATA'));
   }
 
   public ngAfterViewInit(): void {

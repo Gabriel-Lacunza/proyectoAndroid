@@ -2,7 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Alert } from 'selenium-webdriver';
-import { Usuario, buscarUsuario } from 'src/app/model/Usuario';
+//import { Usuario, buscarUsuario } from 'src/app/model/Usuario';
+import { Mensajes } from 'src/app/model/Mensajes';
+import { Usuario } from 'src/app/model/Usuario';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { DatabaseService } from 'src/app/services/database.service';
+
+import { log, mostrarEjemplosDeMensajes, showAlertDUOC, showAlertYesNoDUOC, showToast } from 'src/app/model/Mensajes';
+//import { AuthService } from 'src/app/services/authentication.service';
+import { capSQLiteChanges } from '@capacitor-community/sqlite';
  
 @Component({
   selector: 'app-login',
@@ -12,7 +20,11 @@ import { Usuario, buscarUsuario } from 'src/app/model/Usuario';
 export class LoginPage implements OnInit {
  
   public usuario: Usuario;
-  
+  correo: string = '';
+  password: string = '';
+  darkMode: boolean = false;
+
+  /*
   constructor(private router: Router, private toastController: ToastController) {
     this.usuario = new Usuario();
     this.usuario.nombreUsuario = '';
@@ -30,9 +42,9 @@ export class LoginPage implements OnInit {
       state: {}
     };
     this.router.navigate(['/recuperar'], navigationExtras);
-  }
-
-  public ingresar(): void {
+  }*/
+  //--------------------------------------------------------------------------------------------
+  /*public ingresar(): void {
     const user = buscarUsuario(this.usuario.nombreUsuario);
 
     if (user){
@@ -56,8 +68,34 @@ export class LoginPage implements OnInit {
       }
     };
     this.router.navigate(['/home'], navigationExtras);
-  }
+  }*/
+ //-------------------------------version database----------------------------------------------
+
+ constructor(private auth: AuthenticationService, private toastController: ToastController, private databaseService: DatabaseService, private authenticationService: AuthenticationService) {
+  this.correo;
+  this.password;
+  const prefersDark = window.matchMedia('prefers-color-scheme: dark');
+  this.darkMode = prefersDark.matches;
+}
+
+public ngOnInit(): void {
  
+  //this.usuario.nombreUsuario = 'atorres@duocuc.cl';
+  //this.usuario.password = '1234';
+}
+
+intercambiarModoOscuro(event) {
+  if (event.detail.checked) {
+    document.body.setAttribute('color-theme', 'dark');
+  } else {
+    document.body.setAttribute('color-theme', 'light');
+  }
+}
+
+async ingresar() {
+  this.auth.login(this.correo, this.password);
+}
+ //--------------------------------------------------------------------------------------------
   /**
    * 
    *
