@@ -75,8 +75,9 @@ export class IngresoRespuestaSecretaPage implements OnInit {
   getCorreo() {
     console.log('holaa');
     this.storage.getItem('USER_DATA').then( resultado => {
-      console.log(resultado.value);
-      console.log(JSON.stringify(resultado));
+
+      console.log(eval(resultado.value)[0].correo);//correo limpio para validar
+
     
     });
     
