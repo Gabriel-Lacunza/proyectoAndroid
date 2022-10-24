@@ -36,35 +36,6 @@ export class StorageService {
         alert(message);
     }
 
-    initializePlugin(): Promise<boolean> {
-        this.database = 'asistencia';
-        this.encrypted = false;
-        this.mode = 'no-encryption';
-        this.table = 'STORAGE_TABLE';
-        this.dbOptions = {database: this.database, table: this.table, encrypted: this.encrypted, mode: this.mode};
-
-        return new Promise(async resolve => {
-            try {
-                console.log('StoreService begining initializePlugin...');
-                console.log(`StoreService database:${this.database} encrypted:${this.encrypted} mode:${this.mode} table:${this.table}`);
-                this.platform = Capacitor.getPlatform();
-                if(this.platform === 'ios' || this.platform === 'android') this.isNative = true;
-                this.store = CapacitorDataStorageSqlite;
-                await this.store.openStore(this.dbOptions);
-                this.isService = true;
-                this.isRunning = true;
-                console.log('StoreService initializePlugin is ok...');
-                resolve(true);
-            } catch(err) {
-                console.log('StoreService initializePlugin error...');
-                this.initError = this.getErrorMessage('initializePlugin', err);
-                this.alertError('initializePlugin', err);
-                this.isRunning = false;
-                resolve(false);
-            }
-        });
-    }
-
     async closeStore(): Promise<void> {
         return await this.store.closeStore({ database: this.database });
     }
@@ -161,7 +132,7 @@ export class StorageService {
                 resolve(false);
             }
         });
-    }sesionActiva
+    }
 
     
     private async getStorageUser(hideSecrets: boolean): Promise<Usuario> {
@@ -175,7 +146,7 @@ export class StorageService {
                     usu.setUser(
                         json.correo, 
                         json.password, 
-                        json.nombre, 
+                        json.nombreUsuario, 
                         json.preguntaSecreta, 
                         json.respuestaSecreta, 
                         json.sesionActiva, 

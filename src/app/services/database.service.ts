@@ -11,7 +11,7 @@ export class DatabaseService {
         CREATE TABLE IF NOT EXISTS USUARIO (
             correo TEXT PRIMARY KEY NOT NULL,
             password TEXT NOT NULL,
-            nombre TEXT NOT NULL,
+            nombreUsuario TEXT NOT NULL,
             preguntaSecreta TEXT NOT NULL,
             respuesta TEXT NOT NULL,
             sesionActiva TEXT NOT NULL
@@ -30,17 +30,27 @@ export class DatabaseService {
         CREATE TABLE IF NOT EXISTS CERTIFICACION
         (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre TEXT NOT NULL,
+            nombreUsuario TEXT NOT NULL,
             fecha TEXT NOT NULL,
             vencimiento INTEGER NOT NULL,
             fechaVencimiento TEXT
         );
     `;
-    sqlInsertUser = 'INSERT INTO Usuario (correo, password, nombre, preguntaSecreta, respuesta, sesionActiva) VALUES (?,?,?,?,?,?)';
+    sqlInsertUser = 'INSERT INTO Usuario (correo, password, nombreUsuario, preguntaSecreta, respuesta, sesionActiva) VALUES (?,?,?,?,?,?)';
     sqlSelectUser = 'SELECT * FROM Usuario WHERE correo=? AND password=? LIMIT 1';
     sqlSelectAllUsers = 'SELECT * FROM Usuario';
+    sqlSelectUserMail = 'SELECT * FROM Usuario WHERE correo=? LIMIT 1';
     sqlUpdateActiveSesion = 'UPDATE Usuario SET sesionActiva=? WHERE correo=?';
     sqlSelectActiveSession = `SELECT correo, sesionActiva FROM Usuario WHERE sesionActiva = 'S' LIMIT 1`;
+    sqlUpdateUser = `UPDATE USUARIO SET 
+                        password = ?, 
+                        nombreUsuario = ?, 
+                        preguntaSecreta = ?, 
+                        respuesta = ?, 
+                        sesionActiva = ?
+                    WHERE
+                        correo = ?`;
+    sqlDeleteUser = 'DELETE FROM USUARIO WHERE correo = ?';
 
     constructor(private sqlite: SQLiteService) { }
     
@@ -58,36 +68,40 @@ export class DatabaseService {
         return this.sqlite.StartSQLiteService(this.createSchema, createDatabaseFromScratch, 'StartDatabaseService');
     }
 
-    async createUser(correo: string, password: string, nombre: string, preguntaSecreta: string, respuesta: string, sesionActiva: string): Promise<capSQLiteChanges> {
-        return await this.sqlite.run(this.sqlInsertUser, [correo, password, nombre, preguntaSecreta, respuesta, sesionActiva]);
+    async createUser(correo: string, password: string, nombreUsuario: string, preguntaSecreta: string, respuesta: string, sesionActiva: string): Promise<capSQLiteChanges> {
+        return await this.sqlite.run(this.sqlInsertUser, [correo, password, nombreUsuario, preguntaSecreta, respuesta, sesionActiva]);
     }
 
     async readUsers(): Promise<DBSQLiteValues> {
         return await this.sqlite.query(this.sqlSelectAllUsers);
     }
 
-    async readUser(correo: string, password: string, hideSecrets: boolean): Promise<Usuario> {
-        const rs = await this.sqlite.query(this.sqlSelectUser, [correo, password]);
-        if (rs.values.length === 0) return Promise.resolve(null);
-        const usu = new Usuario();
-        const r = rs.values[0];
-        usu.setUser(
-            r.correo, 
-            r.password, 
-            r.nombre, 
-            r.preguntaSecreta, 
-            r.respuestaSecreta, 
-            r.sesionActiva, 
-            hideSecrets
-        );
-        return Promise.resolve(usu);
+    async readUser(correo: string, password: string, hideSecrets: boolean): Promise<any> {
+        const { values } = await this.sqlite.query(this.sqlSelectUser, [correo, password]);
+        return values;
+        // const usu = new Usuario();
+        // const r = rs.values[0];
+        // usu.setUser(
+        //     r.correo, 
+        //     r.password, 
+        //     r.nombreUsuario, 
+        //     r.preguntaSecreta, 
+        //     r.respuestaSecreta, 
+        //     r.sesionActiva, 
+        //     hideSecrets
+        // );
     }
 
     async logUsers() {
         const rs: DBSQLiteValues = await this.readUsers();
         console.log(`Cantidad de usuarios: ${rs.values.length}`);
         rs.values.forEach((value, index) => {
-            console.log(`Correo ${index}: ${value.correo}, ${value.password}, ${value.nombre}, ${value.preguntaSecreta}, ${value.respuesta}, ${value.sesionActiva}`);
+            console.log(
+                `Correo ${index}: ${value.correo}, ${value.password}, ` +
+                `${value.nombreUsuario}, ${value.preguntaSecreta}, ` +
+                `${value.respuesta}, ` +
+                `${value.sesionActiva}`
+            );
         });
     }
 
@@ -107,20 +121,36 @@ export class DatabaseService {
             if (hideSecrets) {
                 r.password = '';
                 r.preguntaSecreta = '';
-                r.respuestaSecreta = '';
+                r.respuesta = '';
             }
             usu.setUser(
                 r.correo, 
                 r.password, 
-                r.nombre, 
+                r.nombreUsuario, 
                 r.preguntaSecreta, 
-                r.respuestaSecreta, 
+                r.respuesta, 
                 r.sesionActiva, 
                 hideSecrets
             );
             lista.push(usu);
         });
         return lista;
+    }
+
+    async updateUser(usuario: Usuario): Promise<capSQLiteChanges> {
+        return await this.sqlite.run(this.sqlUpdateUser, 
+            [
+                usuario.password,
+                usuario.nombreUsuario,
+                usuario.preguntaSecreta,
+                usuario.respuesta,
+                usuario.sesionActiva,
+                usuario.correo
+            ]);
+    }
+
+    async deleteUser(correo: string): Promise<capSQLiteChanges> {
+        return await this.sqlite.run(this.sqlDeleteUser, [correo]);
     }
   
     /*
@@ -131,4 +161,9 @@ export class DatabaseService {
         if (usu === null) return Promise.resolve('El correo o la password no son válidos');
         return Promise.resolve('');
     }*/
+
+    async buscarCorreo(correo: string): Promise<any> {
+        const { values } = await this.sqlite.query(this.sqlSelectUserMail, [correo]);
+        return values;
+    }
 }

@@ -37,6 +37,9 @@ export class InicioComponent implements OnInit {
   public nivelEducacion: nivelEducacional[] = new nivelEducacional().getNivelEducacional();
   public persona: persona = new persona();
 
+  handlerPermissions: any;
+  initPlugin: boolean = false;
+
   constructor(
     private activeroute: ActivatedRoute,
     private router: Router,
@@ -86,7 +89,7 @@ export class InicioComponent implements OnInit {
       Object.defineProperty(this.persona, key, {value: ""});
     }
   }
-
+/*
   public mostrarDatosPersona(): void {
     if (this.persona.nombre.trim() === "" && this.persona.apellido === ""){
       this.presentAlert("datos personales", "para mostrar los datos de la persona, " + "al menos debe tener un valor para el nombre o el apellido");
@@ -100,7 +103,7 @@ export class InicioComponent implements OnInit {
     mensaje += "<br>fecha de nacimiento: " + this.persona.getFechaNacimiento();
 
     this.presentAlert("datos personales", mensaje);
-  }
+  }*/
 
   public async presentAlert(titulo: string, mensaje: string){
     const alert = await this.alertController.create({
@@ -209,10 +212,16 @@ export class InicioComponent implements OnInit {
     img.src = URL.createObjectURL(file);
   }
 
+  /*
   cerrarSesion() {
     const navigationExtras: NavigationExtras = {
         };
     this.router.navigate(['/login'], navigationExtras);
+  }*/
+
+  salir() {
+    this.auth.logout();
   }
+
 
 }

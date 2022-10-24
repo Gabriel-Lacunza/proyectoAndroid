@@ -86,7 +86,7 @@ export class AuthenticationService {
 
 //export class AuthService {
 
-    authState = new BehaviorSubject(false);
+    AuthenticationService = new BehaviorSubject(false);
     loginState = new BehaviorSubject(false);
 
 
@@ -117,7 +117,7 @@ export class AuthenticationService {
         return await this.storage.authUserExists().then(autenticado => {
             log('isLogged', autenticado? 'El usuario ha iniciado sesión': 'El usuario no ha iniciado sesión');
             if (autenticado) {
-                this.authState.next(true);
+                this.AuthenticationService.next(true);
             }
             return true;
         });
@@ -125,7 +125,6 @@ export class AuthenticationService {
 
     isAuthenticated(): Promise<boolean> {
         log('isAuthenticated', 'Iniciar servicio de autenticación')
-        this.StartAuthService();
         log('isAuthenticated', 'Revisar si el usuario inició sesión')
         return this.storage.authUserExists().then(autenticado => {
             log('isAuthenticated', autenticado? 'El usuario ha iniciado sesión': 'El usuario no ha iniciado sesión');
@@ -133,43 +132,33 @@ export class AuthenticationService {
         });
     }
 
-    async login(correo: string, password: string) {
-        console.log('Iniciando login');
+    async login(mail: string, password: string) {
         try {
-            await this.StartAuthService();
-            log('login', `Obteniendo datos del usuario`);
-            const data: capValueResult = await this.storage.getItem("USER_DATA");
-
-            if (data !== null) {
-                if (data.value !== '') {
-                    const usu = JSON.parse(data.value);
-                    console.log(`USUARIO ${usu.nombre} HA INICIADO SESION (isLogged)`);
-                    this.authState.next(true);
-                    this.router.navigate(['home']);
+            this.db.readUser(mail, password, false).then( async (res) => {
+                if(res.length > 0) {
+                    let data = res[0];
+                    const usu = new Usuario();
+                    usu.setUser(
+                        data.correo,
+                        data.password,
+                        data.nombreUsuario,
+                        data.preguntaSecreta,
+                        data.respuestaSecreta,
+                        'S', 
+                        true
+                    );
+                    await this.storage.clear();
+                    await this.db.updateActiveSession(mail, 'S');
+                    this.storage.setItem('USER_DATA', JSON.stringify(usu));
+                    this.AuthenticationService.next(true);
+                    this.router.navigate(['/home/inicio']);
                     return;
                 }
-            }
-
-
-            const usu = new Usuario();
-            usu.validateUser(correo, password, this.db);
-            if (usu === null) {
-                console.log('AuthenticationService.login El usuario no fue autenticado');
-                return;
-            }
-            console.log('AuthenticationService.login El usuario fue autenticado');
-            const resp = await this.db.updateActiveSession(correo, 'S');
-            if (resp.changes.changes === 1) {
-                showToast(`¡Bienvenido(a) ${usu.nombreUsuario}!`);
-                await this.storage.setItem('USER_DATA', JSON.stringify(usu));
-                await this.db.logUsers();
-                this.authState.next(true);
-                this.router.navigate(['home']);
-            } else {
-                console.log(`No fue posible actualizar la sesión`);
-            }
-        } catch(err) {
-            await showAlertError('AuthenticationService.login', err);
+                console.log('TA MALA LA CLAE O EL USUARIO'); //poner alerta
+            })
+        }catch(err) {
+            this.AuthenticationService.next(false);
+            console.log(err);
         }
     }
 
@@ -184,11 +173,11 @@ export class AuthenticationService {
                     const usu = JSON.parse(data.value);
                     const response: capSQLiteChanges = await this.db.updateActiveSession(usu.correo, 'N');
                     if (response.changes.changes === 1) {
-                        showToast(`¡Hasta pronto ${usu.nombre}!`);
+                        showToast(`¡Hasta pronto ${usu.nombreUsuario}!`);
                         await this.storage.removeItem('USER_DATA');
                         await this.db.logUsers();
                         this.router.navigate(['login']);
-                        this.authState.next(false);
+                        this.AuthenticationService.next(false);
                     } else {
                         console.log(`No fue posible actualizar la sesión`);
                     }
@@ -199,6 +188,7 @@ export class AuthenticationService {
             await showAlertError('AuthenticationService.logout', err);
         }
     }
+
 
 }
 

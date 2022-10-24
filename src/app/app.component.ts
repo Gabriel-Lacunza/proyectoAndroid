@@ -4,6 +4,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { DatabaseService } from './services/database.service';
 
 import { log } from './model/Mensajes';
+import { StorageService } from '../app/services/storage.service';
 //import { AuthService } from './services/authentication.service';
 
 @Component({
@@ -43,7 +44,7 @@ export class AppComponent {
     });
   }*/
 
-  async StartApp() {
+  StartApp() {
 
     log('StartApp', 'Iniciando aplicación');
     
@@ -51,10 +52,9 @@ export class AppComponent {
 
       log('StartApp', 'Plataforma lista');
 
-      await this.db.StartDatabaseService(false).then(async (isRunning) => {
-
+      this.db.StartDatabaseService(true).then(async (isRunning) => {
         log('StartApp', isRunning? 'Servicio de BD iniciado': 'Servicio de BD no iniciado');
-
+        await this.authenticationService.StartAuthService();
       });
     });
 

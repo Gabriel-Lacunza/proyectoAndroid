@@ -17,7 +17,7 @@ import { capSQLiteChanges } from '@capacitor-community/sqlite';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage{
  
   public usuario: Usuario;
   correo: string = '';
@@ -36,13 +36,8 @@ export class LoginPage implements OnInit {
     this.usuario.nombreUsuario = 'atorres@duocuc.cl';
     this.usuario.password = '1234';
   }
-  
-  public recuperar(): void{
-    const navigationExtras: NavigationExtras = {
-      state: {}
-    };
-    this.router.navigate(['/recuperar'], navigationExtras);
-  }*/
+  */
+
   //--------------------------------------------------------------------------------------------
   /*public ingresar(): void {
     const user = buscarUsuario(this.usuario.nombreUsuario);
@@ -71,17 +66,12 @@ export class LoginPage implements OnInit {
   }*/
  //-------------------------------version database----------------------------------------------
 
- constructor(private auth: AuthenticationService, private toastController: ToastController, private databaseService: DatabaseService, private authenticationService: AuthenticationService) {
+ constructor(private router: Router, private auth: AuthenticationService, private toastController: ToastController, private databaseService: DatabaseService) {
   this.correo;
   this.password;
   const prefersDark = window.matchMedia('prefers-color-scheme: dark');
   this.darkMode = prefersDark.matches;
-}
-
-public ngOnInit(): void {
- 
-  //this.usuario.nombreUsuario = 'atorres@duocuc.cl';
-  //this.usuario.password = '1234';
+  
 }
 
 intercambiarModoOscuro(event) {
@@ -96,18 +86,16 @@ async ingresar() {
   this.auth.login(this.correo, this.password);
 }
  //--------------------------------------------------------------------------------------------
-  /**
-   * 
-   *
-   * @param mensaje 
-   * @param duracion 
-   */
   async mostrarMensaje(mensaje: string, duracion?: number) {
     const toast = await this.toastController.create({
         message: mensaje,
         duration: duracion? duracion: 2000
       });
     toast.present();
+  }
+
+  public recuperar(): void {
+    this.router.navigate(['recuperar']);
   }
  
 }

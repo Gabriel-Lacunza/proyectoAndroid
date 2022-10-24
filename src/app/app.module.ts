@@ -8,11 +8,17 @@ import { DatabaseService } from './services/database.service';
 import { StorageService } from './services/storage.service';
 import { SQLiteService } from './services/sqlite.service';
 import { AuthenticationService } from './services/authentication.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [DatabaseService, StorageService, SQLiteService, AuthenticationService,
+  providers: [
+    DatabaseService,
+    StorageService,
+    SQLiteService,
+    AuthenticationService,
+    AuthGuardService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

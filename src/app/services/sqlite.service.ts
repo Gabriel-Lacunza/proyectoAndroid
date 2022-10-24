@@ -24,7 +24,7 @@ export class SQLiteService {
     changes: number;
     isRunning: boolean;
     initError: string;
-    sqlInsertUser = 'INSERT INTO Usuario (correo, password, nombre, preguntaSecreta, respuesta, sesionActiva) VALUES (?,?,?,?,?,?)';
+    sqlInsertUser = 'INSERT INTO Usuario (correo, password, nombreUsuario, preguntaSecreta, respuesta, sesionActiva) VALUES (?,?,?,?,?,?)';
     sqlSelectAllUsers = 'SELECT * FROM Usuario';
 
     constructor() { }
@@ -62,7 +62,7 @@ export class SQLiteService {
                 rs.values.forEach((value, index) => {
                     log('StartSQLiteService', 
                         `Usuario ${index}: ${value.correo}, ${value.password}, ${value.sesionActiva}` 
-                        + `${value.nombre}, ${value.preguntaSecreta}, ` 
+                        + `${value.nombreUsuario}, ${value.preguntaSecreta}, ` 
                         + `${value.respuestaSecreta}, ` 
                         + `${value.sesionActiva}`
                     );
@@ -89,11 +89,11 @@ export class SQLiteService {
         alert(message);
     }
 
-    async createUser(correo: string, password: string, nombre: string, preguntaSecreta: string, respuesta: string, sesionActiva: string): Promise<capSQLiteChanges> {
-        return await this.run(this.sqlInsertUser, [correo, password, nombre, preguntaSecreta, respuesta, sesionActiva]);
+    async createUser(correo: string, password: string, nombreUsuario: string, preguntaSecreta: string, respuesta: string, sesionActiva: string): Promise<capSQLiteChanges> {
+        return await this.run(this.sqlInsertUser, [correo, password, nombreUsuario, preguntaSecreta, respuesta, sesionActiva]);
     }
 
-    initializePlugin(createSchema: string, createDatabaseFromScratch: boolean): Promise<boolean> {
+    /*initializePlugin(createSchema: string, createDatabaseFromScratch: boolean): Promise<boolean> {
         this.database = 'asistencia';
         this.encrypted = false;
         this.mode = 'no-encryption';
@@ -131,7 +131,7 @@ export class SQLiteService {
                 resolve(false);
             }
         });
-    }
+    }*/
 
     getChanges(): number {
         return this.dbChanges.changes.changes;
