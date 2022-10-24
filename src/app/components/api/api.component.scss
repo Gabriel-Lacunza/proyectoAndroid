@@ -27,3 +27,158 @@ h4 {
 .con-padding-top {
     margin-top: 15px !important;
 }
+
+.header {
+    --ion-toolbar-background: white;
+}
+
+.logo{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 7px;
+}
+
+.titulo {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 20px;
+    color: #020B25;
+    // text-shadow: 2px 2px 4px #000000;
+    font-size: 1.6rem;
+}
+
+.background{
+    --ion-background-color: #ffffff;
+}
+
+#container {
+    border-radius: 6px;
+    box-shadow: 0 10px 30px #000;
+    --ion-safe-area-bottom: 22px;
+    --ion-safe-area-top: 20px;
+    margin-top: 20px;
+    --background: url('/assets/img/borroso.png') no-repeat center/cover fixed;
+    background-color: #020B25;
+}
+
+.filter {
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(15px);
+    --ion-toolbar-background: rgba(243, 243, 242, 0.2);
+}
+
+.subtitulo{
+    font-family: 'Source Sans Pro', sans-serif;
+    color: white;
+    font-size: 1.6rem;
+    font-size: 18px;
+    // text-shadow: 2px 2px 4px #000000;
+}
+
+
+.boton {
+    --ion-toolbar-background: white;
+    // --background: #020B25;
+    --background: #020B25;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.input {
+    --ion-toolbar-background: white;
+    --background: #020B25;
+    --highlight-background: rgb(107, 197, 107);
+    color: white;
+}
+
+.cerrarsesion{
+    --ion-toolbar-background: white;
+    --background: #df973a;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.bienvenido{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 22px;
+}
+
+.segmento{
+    background-color: #000;
+}
+
+.titulo-foro{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-weight: 900;
+    font-size: 1.6rem;
+}
+
+
+.boton2 {
+    --ion-toolbar-background: white;
+    // --background: #020B25;
+    --background: #df973a;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    box-shadow: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.tool{
+    --ion-toolbar-background: #020B25;
+}
+
+#container3 {
+    border-radius: 6px;
+    box-shadow: 0 10px 30px #000;
+    --ion-safe-area-bottom: 22px;
+    --ion-safe-area-top: 20px;
+    --background: url('/assets/img/borroso.png') no-repeat center/cover fixed;
+    background-color: white;
+    color: black;
+}
+
+.card{
+    background-color: #020B25;
+    border-radius: 6px;
+}
+
+#container2 {
+    --ion-safe-area-bottom: 22px;
+    --ion-safe-area-top: 20px;
+    --background: url('/assets/img/borroso.png') no-repeat center/cover fixed;
+    background-color: white;
+    color: black;
+    --highlight-background: black;
+}
+
+#container4 {
+    --ion-safe-area-bottom: 22px;
+    --ion-safe-area-top: 20px;
+    --background: url('/assets/img/borroso.png') no-repeat center/cover fixed;
+    background-color: white;
+    color: black;
+    margin-bottom: 5px;
+    --highlight-background: black;
+}
+
+.placeholder{
+    --placeholder-color: black;
+    --placeholder-opacity: 0.66;
+}
+
+.title{
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 1.6rem;
+    font-weight: 900px;
+}

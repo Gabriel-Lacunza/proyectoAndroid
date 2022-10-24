@@ -1,22 +1,22 @@
 <ion-header [translucent]="true">
 
-  <ion-toolbar mode="ios">
-    <ion-title class="tituloPrincipal">
+  <!-- <ion-toolbar mode="ios">
+    <ion-title class="titulo-foro">
       ¡Foro TODAY!
     </ion-title>
-  </ion-toolbar>
+  </ion-toolbar> -->
 
-  <ion-toolbar>
+  <ion-toolbar class="tool">
     <ion-card>
-      <ion-item lines="none">
+      <ion-item lines="none" id="container3" class="filter">
         <span>
           Publicador:&nbsp;
         </span>
         <ion-select placeholder="Seleccione su usuario"
-            class="ion-float-right"
+            class="ion-float-right placeholder"
             [(ngModel)]="selectedUserId"
             (ngModelChange)="cambiarUsuario($event)">
-          <ion-select-option *ngFor="let u of usuarios" [value]="u.id">
+          <ion-select-option *ngFor="let u of usuarios" [value]="u.id" class="aa">
             {{u.name}}
           </ion-select-option>
         </ion-select>
@@ -26,29 +26,29 @@
 
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="background">
   <a id="topOfPage" href="#topOfPage"></a>
-  <ion-card>
+  <ion-card class="card">
 
     <ion-card-header>
-      <ion-card-title>Ingresa tu publicación</ion-card-title>
+      <ion-card-title class="title">Ingresa tu publicación</ion-card-title>
       <ion-card-subtitle class="publicacionSeleccionada">{{publicacionSeleccionada}}</ion-card-subtitle>
     </ion-card-header>
 
-    <ion-item class="ion-padding-horizontal">
-      <ion-label position="floating" color="Secondary">Título</ion-label>
+    <ion-item id="container4" class="filter">
+      <ion-label position="stacked" color="Secondary">Título</ion-label>
       <ion-input [(ngModel)]="publicacion.title"></ion-input>
     </ion-item>
 
-    <ion-item class="ion-padding-horizontal">
-      <ion-label position="floating" color="Secondary">Cuerpo</ion-label>
+    <ion-item id="container2" class="filter">
+      <ion-label position="stacked" color="Secondary">Cuerpo</ion-label>
       <ion-textarea [(ngModel)]="publicacion.body"></ion-textarea>
     </ion-item>
 
     <ion-grid>
       <ion-row>
-        <ion-col><ion-button shape="round" expand="block" (click)="limpiarPublicacion()">Limpiar</ion-button></ion-col>
-        <ion-col><ion-button shape="round" expand="block" (click)="guardarPublicacion()">Guardar</ion-button></ion-col>
+        <ion-col><ion-button shape="round" expand="block" (click)="limpiarPublicacion()" class="boton2">Limpiar</ion-button></ion-col>
+        <ion-col><ion-button shape="round" expand="block" (click)="guardarPublicacion()" class="boton2">Guardar</ion-button></ion-col>
       </ion-row>
     </ion-grid>
 
