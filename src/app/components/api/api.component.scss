@@ -182,3 +182,69 @@ h4 {
     font-size: 1.6rem;
     font-weight: 900px;
 }
+
+.title-public{
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 1.6rem;
+    font-weight: 900px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #020B25;
+    padding-left: 15px;
+}
+
+// .public-background{
+//     background: #020B25;
+// }
+
+.boton-edit {
+    --background: #df973a;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    box-shadow: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-left: 15px;
+}
+.boton-borrar {
+    --background: red;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    box-shadow: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-left: 2px;
+}
+
+
+#container5 {
+    --ion-safe-area-bottom: 22px;
+    --ion-safe-area-top: 20px;
+    --background: url('/assets/img/borroso.png') no-repeat center/cover fixed;
+    background-color: white;
+}
+
+#container6 {
+    --ion-safe-area-bottom: 22px;
+    --ion-safe-area-top: 20px;
+    --background: url('/assets/img/borroso.png') no-repeat center/cover fixed;
+    background-color: #020B25;
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.contenido-public{
+    margin-top: 15px;
+}
+
+.contenido-header{
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contenido-titulo{
+    color: #020B25;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+

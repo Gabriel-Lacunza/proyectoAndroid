@@ -16,7 +16,7 @@
             class="ion-float-right placeholder"
             [(ngModel)]="selectedUserId"
             (ngModelChange)="cambiarUsuario($event)">
-          <ion-select-option *ngFor="let u of usuarios" [value]="u.id" class="aa">
+          <ion-select-option *ngFor="let u of usuarios" [value]="u.id">
             {{u.name}}
           </ion-select-option>
         </ion-select>
@@ -55,25 +55,25 @@
   </ion-card>
 
   <ion-card class="sin-bordes">
-    <ion-card-title class="con-padding-top">Publicaciones recientes</ion-card-title>
+    <ion-card-title class="title-public">Publicaciones recientes</ion-card-title>
   </ion-card>
 
-  <ion-card *ngFor="let p of publicaciones; let i=index; trackBy: getIdentificadorItemPublicacion">
+  <ion-card *ngFor="let p of publicaciones; let i=index; trackBy: getIdentificadorItemPublicacion" id="container6" class="filter">
 
-    <ion-card-header>
-      <h6>(Publicación #{{p.id}}) {{p.name}}</h6>
-      <h4>{{p.title}}</h4>
+    <ion-card-header id="container5" class="filter">
+      <h6 class="contenido-header">(Publicación #{{p.id}}) {{p.name}}</h6>
+      <h4 class="contenido-titulo">{{p.title}}</h4>
     </ion-card-header>
   
-    <ion-card-content>
+    <ion-card-content class="contenido-public">
       {{p.body}}
     </ion-card-content>
 
-    <ion-button (click)="editarPublicacion(p)">
+    <ion-button (click)="editarPublicacion(p)" class="boton-edit">
       <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
     </ion-button>
 
-    <ion-button (click)="eliminarPublicacion(p)">
+    <ion-button (click)="eliminarPublicacion(p)" class="boton-borrar">
       <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
     </ion-button>
 
