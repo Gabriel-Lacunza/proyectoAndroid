@@ -10,6 +10,7 @@ import jsQR, { QRCode } from 'jsqr';
 
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
   selector: 'app-inicio',
@@ -36,6 +37,7 @@ export class InicioComponent implements OnInit {
   public usuario: Usuario;
   public nivelEducacion: nivelEducacional[] = new nivelEducacional().getNivelEducacional();
   public persona: persona = new persona();
+  public nombre;
 
   handlerPermissions: any;
   initPlugin: boolean = false;
@@ -47,20 +49,14 @@ export class InicioComponent implements OnInit {
     private animationController: AnimationController,
     private loadingController: LoadingController,
     private auth: AuthenticationService,
-    private storage: StorageService
-  ) { 
-    this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state){
-        this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
-      }/*else{
-        this.router.navigate(["/login"]);
-      }*/
-    });
-  }
+    private storage: StorageService,
+    private readonly db: DatabaseService
+  ) {  }
 
   async ngOnInit(): Promise<void> {
     console.log("hola mundo");
     console.log('ESTOY EN HOME PAGE ', await this.storage.getItem('USER_DATA'));
+    this.getNombre();
   }
 
   public ngAfterViewInit(): void {
@@ -223,5 +219,12 @@ export class InicioComponent implements OnInit {
     this.auth.logout();
   }
 
+  //---------------------------DATOS USUARIO--------------------------------
+
+  getNombre() {
+    this.storage.getItem('USER_DATA').then( resultado => {
+      this.nombre = JSON.parse(resultado.value).nombreUsuario;
+    });
+  }
 
 }

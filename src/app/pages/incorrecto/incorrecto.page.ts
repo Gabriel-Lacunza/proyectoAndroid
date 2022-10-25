@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/model/Usuario';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-incorrecto',
@@ -12,25 +13,18 @@ export class IncorrectoPage implements OnInit {
 
   constructor(
     private activeroute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private storage: StorageService,
   ) {
     const user = new Usuario;
-
-    this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state){
-        this.user = this.router.getCurrentNavigation().extras.state.user;
-      }else{
-        this.router.navigate(["/login"]);
-      }
-    });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.storage.clear();
+  }
 
   iniciarSesion() {
-    const navigationExtras: NavigationExtras = {
-        };
-    this.router.navigate(['/login'], navigationExtras);
+    this.router.navigate(['/login']);
   }
 
 }

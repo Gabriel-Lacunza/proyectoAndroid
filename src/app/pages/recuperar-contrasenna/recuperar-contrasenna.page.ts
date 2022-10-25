@@ -37,7 +37,6 @@ export class RecuperarContrasennaPage implements OnInit {
     // console.log(this.usuario.correo);
     this.db.buscarCorreo(this.usuario.correo).then((res) => {
       if(res.length > 0) {
-        // console.log(res);
           console.log('correo wueno'); //poner alerta
           this.storage.setItem('USER_DATA', JSON.stringify(res));
           this.router.navigate(['rs']);

@@ -14,6 +14,10 @@ import { StorageService } from '../../services/storage.service';
 export class IngresoRespuestaSecretaPage implements OnInit {
   public usuario: Usuario;
   public user: Usuario;
+  public pregunta;
+  public respuestaBbdd;
+  public respuesta: string;
+  public password: string;
 
   constructor(
     private activeroute: ActivatedRoute,
@@ -23,38 +27,19 @@ export class IngresoRespuestaSecretaPage implements OnInit {
     private storage: StorageService,
   ){
     this.usuario = new Usuario;
-    /*
-    this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state){
-        this.user = this.router.getCurrentNavigation().extras.state.user;
-      }else{
-        this.router.navigate(["/rs"]);
-      }
-    });*/
   }
 
   ngOnInit() {
-    this.storage.getItem('USER_DATA').then( res => {
-      const usuario = console.log(JSON.stringify(res)); //:-)
-      console.log(res[0].correo);
-      console.log('Correo usuario = '+ usuario[0].correo);
-    })
+    this.getPregunta();
+    this.getRespuesta();
   }
 
-  mostrar(){
-    if (this.usuario.respuesta === this.user.respuesta){
+  validarRespuesta(){
+    if (this.respuestaBbdd === this.respuesta){
       //hacer redirect a correcto
-      const navigationExtras: NavigationExtras = {
-        state: {
-          user: this.user
-        }
-      };
-      this.router.navigate(['/correcto'], navigationExtras);
+      this.router.navigate(['/correcto']);
     }else{
-      const navigationExtras: NavigationExtras = {
-        state: {}
-      };
-      this.router.navigate(['/incorrecto'], navigationExtras);
+      this.router.navigate(['/incorrecto']);
     }
   }
 
@@ -72,15 +57,23 @@ export class IngresoRespuestaSecretaPage implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  getCorreo() {
-    console.log('holaa');
+  getPregunta() {
     this.storage.getItem('USER_DATA').then( resultado => {
-
-      console.log(eval(resultado.value)[0].correo);//correo limpio para validar
-
-    
+      console.log(eval(resultado.value)[0].preguntaSecreta);
+      this.pregunta = eval(resultado.value)[0].preguntaSecreta;
     });
     
   }
+
+  getRespuesta() {
+    this.storage.getItem('USER_DATA').then( resultado => {
+      console.log(eval(resultado.value)[0].respuesta);
+      this.respuestaBbdd = eval(resultado.value)[0].respuesta;
+    });
+    
+  }
+
+
+
 
 }
