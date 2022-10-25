@@ -28,6 +28,7 @@
     
 }
 
+
 #container {
     border-radius: 6px;
     box-shadow: 0 10px 30px #000;
@@ -82,4 +83,31 @@
 
 .segmento{
     background-color: #000;
+}
+
+// ion-content:host::after {
+//     --background: var(--ion-background-color, red) !important; // or whatever color you want
+// }
+
+:root {
+    --background-color: transparent !important;
+    background: transparent;
+    --color: var(--ion-text-color, #000);
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --keyboard-offset: 0px;
+    --offset-top: 0px;
+    --offset-bottom: 0px;
+    --overflow: auto;
+    display: block;
+    position: relative;
+    flex: 1 1 0%;
+    width: 100%;
+    height: 100%;
+    font-family: var(--ion-font-family, inherit);
+    contain: size style;
+    margin: 0px !important;
+    padding: 0px !important;
 }

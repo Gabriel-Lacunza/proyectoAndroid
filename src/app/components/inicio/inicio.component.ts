@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild,AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/Usuario';
@@ -7,6 +7,8 @@ import { persona } from '../../model/persona';
 import { AnimationController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
+
+import { BarcodeScanner, SupportedFormat } from '@capacitor-community/barcode-scanner';
 
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -110,7 +112,7 @@ export class InicioComponent implements OnInit {
 
     await alert.present();
   }
-
+/*
   public limpiarDatos(): void {
     this.escaneando = false;
     this.datosQR = '';
@@ -208,7 +210,7 @@ export class InicioComponent implements OnInit {
     img.src = URL.createObjectURL(file);
   }
 
-  /*
+  
   cerrarSesion() {
     const navigationExtras: NavigationExtras = {
         };
@@ -226,5 +228,48 @@ export class InicioComponent implements OnInit {
       this.nombre = JSON.parse(resultado.value).nombreUsuario;
     });
   }
+
+  //-------------------------CAMARA NATIVA-------------------------
+
+  
+async checkPermission() {
+  return new Promise(async (resolve) => {
+    const status = await BarcodeScanner.checkPermission({ force: true });
+    if (status.granted) {
+      resolve(true);
+    } else if (status.denied) {
+      BarcodeScanner.openAppSettings();
+      resolve(false);
+    }
+  });
+}
+
+async comenzarEscaneo() {
+  const allowed = await this.checkPermission();
+  if (allowed) {
+    this.escaneando = true;
+    BarcodeScanner.hideBackground();
+    const result = await BarcodeScanner.startScan({ targetedFormats: [SupportedFormat.QR_CODE] });
+    if (result.hasContent) {
+      this.escaneando = false;
+      alert(result.content);
+    } 
+    else {
+      alert('No fue posible encontrar datos de código QR');
+    }
+  } 
+  else {
+    alert('No fue posible escanear, verifique que la aplicación tenga permiso para la cámara');
+  }
+}
+
+detenerEscaneo() {
+  BarcodeScanner.stopScan();
+  this.escaneando = false;
+}
+
+ionViewWillLeave() {
+  this.detenerEscaneo();
+}
 
 }
