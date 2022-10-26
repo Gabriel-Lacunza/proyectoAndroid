@@ -14,28 +14,22 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class RecuperarContrasennaPage implements OnInit {
   public usuario: Usuario;
+  public correo;
 
   constructor(private router: Router, 
     private auth: AuthenticationService, 
-    private toastController: ToastController,
-     private alertController: AlertController,
-     private readonly db: DatabaseService,
-     private readonly storage: StorageService) {
-    this.usuario = new Usuario();
-    this.usuario.correo = '';
+    private readonly db: DatabaseService,
+    private readonly storage: StorageService) {
   }
 
   public ngOnInit(): void {
-    this.usuario.correo = 'atorres@duocuc.cl';
-    this.usuario.password = '1234';
-
     // this.siguiente();
 
   }
 
   buscarUsuario() {
     // console.log(this.usuario.correo);
-    this.db.buscarCorreo(this.usuario.correo).then((res) => {
+    this.db.buscarCorreo(this.correo).then((res) => {
       if(res.length > 0) {
           console.log('correo wueno'); //poner alerta
           this.storage.setItem('USER_DATA', JSON.stringify(res));

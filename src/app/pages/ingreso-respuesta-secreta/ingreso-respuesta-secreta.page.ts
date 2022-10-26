@@ -54,6 +54,7 @@ export class IngresoRespuestaSecretaPage implements OnInit {
   }
 
   iniciarSesion() {
+    this.storage.clear();
     this.router.navigate(['/login']);
   }
 

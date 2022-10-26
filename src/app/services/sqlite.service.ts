@@ -93,46 +93,6 @@ export class SQLiteService {
         return await this.run(this.sqlInsertUser, [correo, password, nombreUsuario, preguntaSecreta, respuesta, sesionActiva]);
     }
 
-    /*initializePlugin(createSchema: string, createDatabaseFromScratch: boolean): Promise<boolean> {
-        this.database = 'asistencia';
-        this.encrypted = false;
-        this.mode = 'no-encryption';
-        this.version = 1;
-        this.readonly = false;
-        this.dbOptions = {database: this.database, readonly: this.readonly };
-
-        return new Promise(async resolve => {
-            try {
-                console.log(`SQLiteService begining initializePlugin...`);
-                console.log(`SQLiteService database:${this.database} encrypted:${this.encrypted} mode:${this.mode} version:${this.version} readonly:${this.readonly}`);
-                this.platform = Capacitor.getPlatform();
-                if(this.platform === 'ios' || this.platform === 'android') this.isNative = true;
-                this.capacitorSQLitePlugin = CapacitorSQLite;
-                await this.capacitorSQLitePlugin.closeConnection(this.dbOptions).catch((reason) => console.log(reason))
-                this.sqlite = new SQLiteConnection(this.capacitorSQLitePlugin);
-                this.db = await this.createConnection();
-                if (createDatabaseFromScratch) await this.deleteDatabase();
-                this.db.open();
-                if (createDatabaseFromScratch) {
-                    await this.db.execute(createSchema);
-                    await this.createUser('atorres@duocuc.cl', '1234', 'Ana Torres Leiva', '¿Cuál es tu animal favorito?', 'gato', 'S');
-                    await this.createUser('jperez@duocuc.cl', '5678', 'Juan Pérez González', '¿Cuál es tu postre favorito?', 'panqueques', 'N');
-                    await this.createUser('cmujica@duocuc.cl', '0987', 'Carla Mujica Sáez', '¿Cuál es tu vehículo favorito?', 'moto', 'N');
-                }
-                this.isService = true;
-                this.isRunning = true;
-                console.log('SQLiteService initializePlugin is ok...');
-                resolve(true);
-            } catch(err) {
-                console.log('SQLiteService initializePlugin error...');
-                this.initError = this.getErrorMessage('initializePlugin', err);
-                this.alertError('initializePlugin', err);
-                this.isRunning = false;
-                resolve(false);
-            }
-        });
-    }*/
-
     getChanges(): number {
         return this.dbChanges.changes.changes;
     }

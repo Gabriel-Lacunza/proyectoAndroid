@@ -136,6 +136,7 @@ export class StorageService {
 
     
     private async getStorageUser(hideSecrets: boolean): Promise<Usuario> {
+        this.StartStorageService('StartAuthenticationService');
         log('getStorageUser', 'Revisando USER_DATA');
         return this.getItem("USER_DATA").then((datos) => {
             if (datos !== null) {
