@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+
+  <!-- <ion-toolbar mode="ios">
+    <ion-title class="titulo-foro">
+      ¡Foro TODAY!
+    </ion-title>
+  </ion-toolbar> -->
+
+  <ion-toolbar class="tool">
+    <ion-card>
+      <ion-item lines="none" id="container3" class="filter">
+        <span>
+          Publicador:&nbsp;
+        </span>
+        <ion-select placeholder="Seleccione su usuario"
+            class="ion-float-right placeholder"
+            [(ngModel)]="selectedUserId"
+            (ngModelChange)="cambiarUsuario($event)">
+          <ion-select-option *ngFor="let u of usuarios" [value]="u.id">
+            {{u.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+  <a id="topOfPage" href="#topOfPage"></a>
+  <ion-card class="card">
+
+    <ion-card-header>
+      <ion-card-title class="title">Ingresa tu publicación</ion-card-title>
+      <ion-card-subtitle class="publicacionSeleccionada">{{publicacionSeleccionada}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-item id="container4" class="filter">
+      <ion-label position="stacked" color="Secondary">Título</ion-label>
+      <ion-input [(ngModel)]="publicacion.title"></ion-input>
+    </ion-item>
+
+    <ion-item id="container2" class="filter">
+      <ion-label position="stacked" color="Secondary">Cuerpo</ion-label>
+      <ion-textarea [(ngModel)]="publicacion.body"></ion-textarea>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-button shape="round" expand="block" (click)="limpiarPublicacion()" class="boton2">Limpiar</ion-button></ion-col>
+        <ion-col><ion-button shape="round" expand="block" (click)="guardarPublicacion()" class="boton2">Guardar</ion-button></ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+  <ion-card class="sin-bordes">
+    <ion-card-title class="title-public">Publicaciones recientes</ion-card-title>
+  </ion-card>
+
+  <ion-card *ngFor="let p of publicaciones; let i=index; trackBy: getIdentificadorItemPublicacion" id="container6" class="filter">
+
+    <ion-card-header id="container5" class="filter">
+      <h6 class="contenido-header">(Publicación #{{p.id}}) {{p.name}}</h6>
+      <h4 class="contenido-titulo">{{p.title}}</h4>
+    </ion-card-header>
+  
+    <ion-card-content class="contenido-public">
+      {{p.body}}
+    </ion-card-content>
+
+    <ion-button (click)="editarPublicacion(p)" class="boton-edit">
+      <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="eliminarPublicacion(p)" class="boton-borrar">
+      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+
+  </ion-card>
+
+</ion-content>

@@ -5,11 +5,13 @@ import { IonicModule } from "@ionic/angular";
 
 import { InicioComponent } from "./inicio/inicio.component";
 import { MiClaseComponent } from "./mi-clase/mi-clase.component";
+import { ApiComponent } from "./api/api.component";
 
 @NgModule({
     declarations:[
         InicioComponent,
         MiClaseComponent,
+        ApiComponent,
     ],
     imports:[
         CommonModule,
@@ -19,6 +21,7 @@ import { MiClaseComponent } from "./mi-clase/mi-clase.component";
     exports:[
         InicioComponent,
         MiClaseComponent,
+        ApiComponent,
         FormsModule
     ]
 })

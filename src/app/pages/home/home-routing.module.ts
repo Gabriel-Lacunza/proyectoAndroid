@@ -17,6 +17,10 @@ const routes: Routes = [
       {
         path: "mi-clase",
         component: MiClaseComponent
+      },
+      {
+        path: "foro",
+        component: MiClaseComponent
       }
     ]
   },
