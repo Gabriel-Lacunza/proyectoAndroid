@@ -142,6 +142,43 @@ detenerEscaneo() {
   this.escaneando = false;
 }
 
+public cargarImagenDesdeArchivo() : void {
+  this.fileinput.nativeElement.click();
+}
+
+public obtenerDatosQR(source?: CanvasImageSource): boolean {
+  let w = 0;
+  let h = 0;
+  if (!source) {
+    this.canvas.nativeElement.width = this.video.nativeElement.videoWidth;
+    this.canvas.nativeElement.height = this.video.nativeElement.videoHeight;
+  }
+
+  w = this.canvas.nativeElement.width;
+  h = this.canvas.nativeElement.height;
+  console.log(w + ' ' + h);
+
+  const context: CanvasRenderingContext2D = this.canvas.nativeElement.getContext('2d');
+  context.drawImage(source? source : this.video.nativeElement, 0, 0, w, h);
+  const img: ImageData = context.getImageData(0, 0, w, h);
+  const qrCode: QRCode = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
+  if (qrCode) {
+    this.escaneando = false;
+    this.storage.setItem('MICLASE_DATA',qrCode.data);
+    this.router.navigate(['home/mi-clase']);
+  }
+  return this.datosQR !== '';
+}
+
+public verificarArchivoConQR(files: FileList): void {
+  const file = files.item(0);
+  const img = new Image();
+  img.onload = () => {
+    this.obtenerDatosQR(img);
+  };
+  img.src = URL.createObjectURL(file);
+}
+
 ionViewWillLeave() {
   this.detenerEscaneo();
 }

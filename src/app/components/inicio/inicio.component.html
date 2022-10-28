@@ -28,11 +28,16 @@
             Detener escaneo de código QR
           </ion-button> 
 
-          
           <ion-button class="ion-text-center boton" (click)="cargarImagenDesdeArchivo()" expand="full" shape="round">
             <ion-icon slot="start" name="camera"></ion-icon>
             Cargar Imagen con Código QR
           </ion-button>
+
+          <video #video [hidden]="!escaneando"></video>
+          <canvas #canvas hidden></canvas>
+          <input #fileinput hidden id="input-file" type="file" accept="image/*;capture=camera" 
+          (change)="verificarArchivoConQR($event.target.files)" />
+          
           <ion-button style="background-color: light" class="ion-text-center boton">
             <a routerLink="" (click)="salir()">Cerrar sesión</a>
           </ion-button>
