@@ -125,7 +125,8 @@ async comenzarEscaneo() {
     const result = await BarcodeScanner.startScan({ targetedFormats: [SupportedFormat.QR_CODE] });
     if (result.hasContent) {
       this.escaneando = false;
-      alert(result.content);
+      this.storage.setItem('MICLASE_DATA',result.content);
+      this.router.navigate(['home/mi-clase']);
     } 
     else {
       alert('No fue posible encontrar datos de código QR');
