@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario } from 'src/app/model/usuario';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { StorageService } from '../../services/storage.service';
 

@@ -8,7 +8,7 @@ import { DatabaseService } from './database.service';
 import { StorageService } from './storage.service';
 
 import { capValueResult } from 'capacitor-data-storage-sqlite';
-import { Usuario } from '../model/Usuario';
+import { Usuario } from '../model/usuario';
 import { log, showAlertError, showToast } from '../model/Mensajes';
 
 @Injectable()
@@ -154,7 +154,6 @@ export class AuthenticationService {
                     this.router.navigate(['/home/inicio']);
                     return;
                 }
-                console.log('TA MALA LA CLAE O EL USUARIO'); //poner alerta
             })
         }catch(err) {
             this.AuthenticationService.next(false);

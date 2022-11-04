@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { capSQLiteChanges, DBSQLiteValues} from '@capacitor-community/sqlite';
-import { Usuario } from '../model/Usuario';
+import { Usuario } from '../model/usuario';
 import { SQLiteService } from './sqlite.service';
 
 @Injectable()
@@ -153,14 +153,6 @@ export class DatabaseService {
         return await this.sqlite.run(this.sqlDeleteUser, [correo]);
     }
   
-    /*
-    async validateUser(correo: string, password: string, db: DatabaseService): Promise<string> {
-        const msg = new Usuario().validateUser(correo, password , db);
-        if (msg !== '') return Promise.resolve(msg);
-        const usu = await this.readUser(correo, password);
-        if (usu === null) return Promise.resolve('El correo o la password no son válidos');
-        return Promise.resolve('');
-    }*/
 
     async buscarCorreo(correo: string): Promise<any> {
         const { values } = await this.sqlite.query(this.sqlSelectUserMail, [correo]);

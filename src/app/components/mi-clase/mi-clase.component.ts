@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-mi-clase',
@@ -20,7 +21,7 @@ export class MiClaseComponent implements OnInit {
   public horaFin = '';
 
   constructor(
-    private storage: StorageService
+    private storage: StorageService,private auth: AuthenticationService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -28,7 +29,12 @@ export class MiClaseComponent implements OnInit {
   }
 
   async getDataMiClase(){
+
+
     this.storage.getItem('MICLASE_DATA').then( resultado => {
+      if (resultado.value === "") {
+        return;
+      } else {
       this.sede = JSON.parse(resultado.value).sede;
       this.idAsignatura = JSON.parse(resultado.value).idAsignatura;
       this.seccion = JSON.parse(resultado.value).seccion;
@@ -39,7 +45,13 @@ export class MiClaseComponent implements OnInit {
       this.bloqueTermino = JSON.parse(resultado.value).bloqueTermino;
       this.horaInicio = JSON.parse(resultado.value).horaInicio;
       this.horaFin = JSON.parse(resultado.value).horaFin;
+      }
     });
+  }
+
+  salir() {
+    this.auth.logout();
+    this.storage.clear();
   }
 
 }

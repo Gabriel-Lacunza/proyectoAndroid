@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario } from 'src/app/model/usuario';
 import { nivelEducacional } from '../../model/nivelEducacional';
 import { persona } from '../../model/persona';
 import { AnimationController } from '@ionic/angular';
@@ -105,82 +105,82 @@ export class InicioComponent implements OnInit {
   //-------------------------CAMARA NATIVA-------------------------
 
   
-async checkPermission() {
-  return new Promise(async (resolve) => {
-    const status = await BarcodeScanner.checkPermission({ force: true });
-    if (status.granted) {
-      resolve(true);
-    } else if (status.denied) {
-      BarcodeScanner.openAppSettings();
-      resolve(false);
-    }
-  });
-}
+// async checkPermission() {
+//   return new Promise(async (resolve) => {
+//     const status = await BarcodeScanner.checkPermission({ force: true });
+//     if (status.granted) {
+//       resolve(true);
+//     } else if (status.denied) {
+//       BarcodeScanner.openAppSettings();
+//       resolve(false);
+//     }
+//   });
+// }
 
-async comenzarEscaneo() {
-  const allowed = await this.checkPermission();
-  if (allowed) {
-    this.escaneando = true;
-    BarcodeScanner.hideBackground();
-    const result = await BarcodeScanner.startScan({ targetedFormats: [SupportedFormat.QR_CODE] });
-    if (result.hasContent) {
-      this.escaneando = false;
-      this.storage.setItem('MICLASE_DATA',result.content);
-      this.router.navigate(['home/mi-clase']);
-    } 
-    else {
-      alert('No fue posible encontrar datos de código QR');
-    }
-  } 
-  else {
-    alert('No fue posible escanear, verifique que la aplicación tenga permiso para la cámara');
-  }
-}
+// async comenzarEscaneo() {
+//   const allowed = await this.checkPermission();
+//   if (allowed) {
+//     this.escaneando = true;
+//     BarcodeScanner.hideBackground();
+//     const result = await BarcodeScanner.startScan({ targetedFormats: [SupportedFormat.QR_CODE] });
+//     if (result.hasContent) {
+//       this.escaneando = false;
+//       this.storage.setItem('MICLASE_DATA',result.content);
+//       this.router.navigate(['home/mi-clase']);
+//     } 
+//     else {
+//       alert('No fue posible encontrar datos de código QR');
+//     }
+//   } 
+//   else {
+//     alert('No fue posible escanear, verifique que la aplicación tenga permiso para la cámara');
+//   }
+// }
 
-detenerEscaneo() {
-  BarcodeScanner.stopScan();
-  this.escaneando = false;
-}
+// detenerEscaneo() {
+//   BarcodeScanner.stopScan();
+//   this.escaneando = false;
+// }
 
-public cargarImagenDesdeArchivo() : void {
-  this.fileinput.nativeElement.click();
-}
+// public cargarImagenDesdeArchivo() : void {
+//   this.fileinput.nativeElement.click();
+// }
 
-public obtenerDatosQR(source?: CanvasImageSource): boolean {
-  let w = 0;
-  let h = 0;
-  if (!source) {
-    this.canvas.nativeElement.width = this.video.nativeElement.videoWidth;
-    this.canvas.nativeElement.height = this.video.nativeElement.videoHeight;
-  }
+// public obtenerDatosQR(source?: CanvasImageSource): boolean {
+//   let w = 0;
+//   let h = 0;
+//   if (!source) {
+//     this.canvas.nativeElement.width = this.video.nativeElement.videoWidth;
+//     this.canvas.nativeElement.height = this.video.nativeElement.videoHeight;
+//   }
 
-  w = this.canvas.nativeElement.width;
-  h = this.canvas.nativeElement.height;
-  console.log(w + ' ' + h);
+//   w = this.canvas.nativeElement.width;
+//   h = this.canvas.nativeElement.height;
+//   console.log(w + ' ' + h);
 
-  const context: CanvasRenderingContext2D = this.canvas.nativeElement.getContext('2d');
-  context.drawImage(source? source : this.video.nativeElement, 0, 0, w, h);
-  const img: ImageData = context.getImageData(0, 0, w, h);
-  const qrCode: QRCode = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
-  if (qrCode) {
-    this.escaneando = false;
-    this.storage.setItem('MICLASE_DATA',qrCode.data);
-    this.router.navigate(['home/mi-clase']);
-  }
-  return this.datosQR !== '';
-}
+//   const context: CanvasRenderingContext2D = this.canvas.nativeElement.getContext('2d');
+//   context.drawImage(source? source : this.video.nativeElement, 0, 0, w, h);
+//   const img: ImageData = context.getImageData(0, 0, w, h);
+//   const qrCode: QRCode = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
+//   if (qrCode) {
+//     this.escaneando = false;
+//     this.storage.setItem('MICLASE_DATA',qrCode.data);
+//     this.router.navigate(['home/mi-clase']);
+//   }
+//   return this.datosQR !== '';
+// }
 
-public verificarArchivoConQR(files: FileList): void {
-  const file = files.item(0);
-  const img = new Image();
-  img.onload = () => {
-    this.obtenerDatosQR(img);
-  };
-  img.src = URL.createObjectURL(file);
-}
+// public verificarArchivoConQR(files: FileList): void {
+//   const file = files.item(0);
+//   const img = new Image();
+//   img.onload = () => {
+//     this.obtenerDatosQR(img);
+//   };
+//   img.src = URL.createObjectURL(file);
+// }
 
-ionViewWillLeave() {
-  this.detenerEscaneo();
-}
+// ionViewWillLeave() {
+//   this.detenerEscaneo();
+// }
 
 }

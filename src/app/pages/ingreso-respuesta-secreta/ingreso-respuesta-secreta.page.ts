@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario } from 'src/app/model/usuario';
 
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { StorageService } from '../../services/storage.service';
@@ -30,8 +30,11 @@ export class IngresoRespuestaSecretaPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log('----------PAGINA RS-----------');
     this.getPregunta();
     this.getRespuesta();
+    console.log(this.pregunta);
+    console.log(this.respuestaBbdd);
   }
 
   validarRespuesta(){

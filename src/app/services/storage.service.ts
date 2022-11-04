@@ -5,7 +5,7 @@ import {
     , capKeysValuesResult, capTablesResult, capValueResult, capValuesResult,
         } from 'capacitor-data-storage-sqlite';
 import { log, showAlertError } from '../model/Mensajes';
-import { Usuario } from '../model/Usuario';
+import { Usuario } from '../model/usuario';
 import { SQLiteService } from './sqlite.service';
 
 @Injectable({

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationExtras, Data } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 //import { buscarUsuario, Usuario } from 'src/app/model/Usuario';
-import {  Usuario } from 'src/app/model/Usuario';
+import {  Usuario } from 'src/app/model/usuario';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -31,11 +31,10 @@ export class RecuperarContrasennaPage implements OnInit {
     // console.log(this.usuario.correo);
     this.db.buscarCorreo(this.correo).then((res) => {
       if(res.length > 0) {
-          console.log('correo wueno'); //poner alerta
           this.storage.setItem('USER_DATA', JSON.stringify(res));
           this.router.navigate(['rs']);
       }else {
-        console.log('ta malo el correo '); //poner alerta
+        return;
       }
     });
 

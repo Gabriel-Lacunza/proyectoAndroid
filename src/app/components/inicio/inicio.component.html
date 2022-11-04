@@ -1,47 +1,20 @@
-<ion-content style="--background: transparent;">
+<ion-content fullscreen="true" class="background">
   <ion-card id="container" class="filter">
     <ion-header>
       <ion-toolbar>
         <ion-title class="titulo">
-          <!-- <ion-icon #icon name="settings-outline" style="width: 25px; height: 25px;"></ion-icon> -->
+          <ion-icon #icon name="settings-outline" style="width: 25px; height: 25px;"></ion-icon>
           <h1>Sistema de Asistencia DUOC</h1>
         </ion-title>
         <ion-card-subtitle class="bienvenido">
           <p>¡Bienvenido!</p>
           <p>{{this.nombre}}</p>
         </ion-card-subtitle>
-        <ion-card-subtitle class="subtitulo">
-          
-        </ion-card-subtitle>
-        <ion-card-subtitle class="subtitulo">
-          <h5>Lectura de Código QR</h5>
-        </ion-card-subtitle>
-        <!--  ---------------------------------------------- -->
-        <ion-card-content>
-        <div class="scan-box" [hidden]="escaneando"></div>
-        <ion-img src="../../../assets/img/qr-code.png" [hidden]="escaneando"></ion-img>
-          <ion-button class="ion-text-center boton" expand="full" (click)="comenzarEscaneo()" [hidden]="escaneando">
-            Escanear código QR
-          </ion-button>
-          <div class="scan" [hidden]="!escaneando"><div class="qrcode" [hidden]="!escaneando"></div></div>
-          <ion-button class="ion-text-center boton" expand="full" (click)="detenerEscaneo()" [hidden]="!escaneando">
-            Detener escaneo de código QR
-          </ion-button> 
-
-          <ion-button class="ion-text-center boton" (click)="cargarImagenDesdeArchivo()" expand="full" shape="round">
-            <ion-icon slot="start" name="camera"></ion-icon>
-            Cargar Imagen con Código QR
-          </ion-button>
-
-          <video #video [hidden]="!escaneando"></video>
-          <canvas #canvas hidden></canvas>
-          <input #fileinput hidden id="input-file" type="file" accept="image/*;capture=camera" 
-          (change)="verificarArchivoConQR($event.target.files)" />
-          
-          <ion-button style="background-color: light" class="ion-text-center boton">
-            <a routerLink="" (click)="salir()">Cerrar sesión</a>
-          </ion-button>
-        </ion-card-content>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button class="cerrarsesion" shape="block" (click)="salir()">Cerrar sesión</ion-button>
+          </ion-col>
+        </ion-row>
       </ion-toolbar>
     </ion-header>
   </ion-card>
