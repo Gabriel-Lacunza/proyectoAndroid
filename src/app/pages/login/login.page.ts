@@ -3,7 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Alert } from 'selenium-webdriver';
 //import { Usuario, buscarUsuario } from 'src/app/model/Usuario';
-import { Mensajes } from 'src/app/model/Mensajes';
+//import { Mensajes } from 'src/app/model/Mensajes';
 import { Usuario } from 'src/app/model/usuario';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DatabaseService } from 'src/app/services/database.service';
@@ -54,6 +54,16 @@ async ingresar() {
 
   public recuperar(): void {
     this.router.navigate(['recuperar']);
+  }
+
+  async eliminar() {
+    log('LoginPage.eliminar', 'Navegar a página aliminar usuarios');
+    this.router.navigate(['delete-user']);
+  }
+
+  registrar() {
+    log('LoginPage.registrar', 'Navegar a página crear nuevo usuario');
+    this.router.navigate(['create-user']);
   }
  
 }

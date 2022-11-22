@@ -1,12 +1,12 @@
 import { AlertController, ToastController } from "@ionic/angular";
 import { MessageEnum } from "./MessageEnum";
 
-var showLogs: boolean = true;
+export var showLogs: boolean = true;
 
-export class Mensajes {
 
-    constructor() { }
-    
+
+export function getAppName(): string {
+    return '<<Here I am>>';
 }
 
 export function log(source: string, message: string, returnValue?: boolean) {
@@ -47,27 +47,48 @@ export async function showAlert(header: string, message: string): Promise<void> 
     });
 }
 
-export async function showAlertYesNo(header: string, message: string): Promise<MessageEnum> {
-    return new Promise((resolve) => {
-        let alert = new AlertController().create({
-            header, message, 
-            buttons: [
-                { text: 'Sí', handler: () => { resolve(MessageEnum.YES); } },
-                { text: 'No', handler: () => { resolve(MessageEnum.NO) } },
-                { text: 'Cancelar', handler: () => { resolve(MessageEnum.CANCEL) } },
-            ]
-        }).then((value: HTMLIonAlertElement) => value.present());
-    });
+// export async function showAlertYesNo(header: string, message: string): Promise<MessageEnum> {
+//     return new Promise((resolve) => {
+//         let alert = new AlertController().create({
+//             header, message, 
+//             buttons: [
+//                 { text: 'Sí', handler: () => { resolve(MessageEnum.YES); } },
+//                 { text: 'No', handler: () => { resolve(MessageEnum.NO) } },
+//                 { text: 'Cancelar', handler: () => { resolve(MessageEnum.CANCEL) } },
+//             ]
+//         }).then((value: HTMLIonAlertElement) => value.present());
+//     });
+// }
+
+export function getSpecialMessage(message: string, callAdmin?: boolean, tryAgain?: boolean): string {
+    if (message.substr(message.length - 1) !== '.') message += '.';
+    if (callAdmin === undefined) callAdmin = false;
+    if (tryAgain === undefined) tryAgain = false;
+    if (callAdmin && tryAgain) message += ' Por favor, comuníquese con el Administrador del Sistema '
+        + 'o intente nuevamente más tarde.';
+    if (callAdmin && !tryAgain) message += ' Por favor, comuníquese con el Administrador del Sistema.';
+    if (!callAdmin && tryAgain) message += ' Por favor, intente nuevamente más tarde.';
+    return message;
 }
 
-export async function showAlertDUOC(message: string): Promise<void> {
+// export async function showAlertDUOC(message: string): Promise<void> {
+//     return new Promise((resolve) => {
+//         if (message.trim() === '') resolve();
+//         let alert = new AlertController().create({
+//             header: 'App Estoy Presente', message, 
+//             buttons: [
+//                 { text: 'Aceptar', handler: () => resolve() }
+//             ]
+//         }).then((value: HTMLIonAlertElement) => value.present());
+//     });
+// }
+
+export async function showAlertDUOC(message: string, callAdmin?: boolean, tryAgain?: boolean): Promise<void> {
     return new Promise((resolve) => {
-        if (message.trim() === '') resolve();
         let alert = new AlertController().create({
-            header: 'App Estoy Presente', message, 
-            buttons: [
-                { text: 'Aceptar', handler: () => resolve() }
-            ]
+            header: getAppName(),
+            message: getSpecialMessage(message, callAdmin, tryAgain),
+            buttons: [{ text: 'Aceptar', handler: () => resolve() }]
         }).then((value: HTMLIonAlertElement) => value.present());
     });
 }

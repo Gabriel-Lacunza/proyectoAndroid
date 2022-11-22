@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { capSQLiteChanges } from '@capacitor-community/sqlite';
 import { ToastController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
-import { Mensajes } from '../model/Mensajes';
+//import { Mensajes } from '../model/Mensajes';
 import { DatabaseService } from './database.service';
 import { StorageService } from './storage.service';
 

@@ -15,6 +15,14 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'create-user',
+    loadChildren: () => import('./pages/create-user/create-user.module').then( m => m.CreateUserPageModule),
+  },
+  {
+    path: 'delete-user',
+    loadChildren: () => import('./pages/delete-user/delete-user.module').then( m => m.DeleteUserPageModule)
+  },
+  {
     path: 'miclase',
     loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },

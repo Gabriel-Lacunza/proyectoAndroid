@@ -46,6 +46,31 @@ export class Usuario {
       return '';
     }
 
+    
+    validateName(nombre: string): string {
+      if (nombre.trim() === '') return 'Debe ingresar su nombre.';
+      return '';
+    }
+
+    validateSecretQuestion(question: string): string {
+      if (question.trim() === '') return 'Debe ingresar su pregunta secreta.';
+      return '';
+    }
+
+    validateSecretAnswer(answer: string): string {
+      if (answer.trim() === '') return 'Debe ingresar su respuesta secreta.';
+      return '';
+    }
+
+        validateUserFields(correo: string, password: string, name: string
+      , secretQuestion: string, secretAnswer: string): string {
+    return this.validateEmail(correo) 
+      || this.validatePassword(password)
+      || this.validateName(name)
+      || this.validateSecretQuestion(secretQuestion)
+      || this.validateSecretAnswer(secretAnswer)
+  }
+
     async validateUser(correo: string, password: string, db: DatabaseService): Promise<boolean> {
       return new Promise(async (resolve) => {
         let msg = this.validateEmail(correo);
@@ -72,5 +97,7 @@ export class Usuario {
         return Promise.resolve(usu);
       });
     }
+
+
   }
   
