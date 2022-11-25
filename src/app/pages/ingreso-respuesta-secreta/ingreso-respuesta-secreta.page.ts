@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario } from 'src/app/model/usuario';
+
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-ingreso-respuesta-secreta',
@@ -11,41 +14,35 @@ import { Usuario } from 'src/app/model/Usuario';
 export class IngresoRespuestaSecretaPage implements OnInit {
   public usuario: Usuario;
   public user: Usuario;
+  public pregunta;
+  public respuestaBbdd;
+  public respuesta: string;
+  public password: string;
 
   constructor(
     private activeroute: ActivatedRoute,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private auth: AuthenticationService,
+    private storage: StorageService,
   ){
     this.usuario = new Usuario;
-    this.usuario.respuesta = "";
-    
-    this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state){
-        this.user = this.router.getCurrentNavigation().extras.state.user;
-      }else{
-        this.router.navigate(["/rs"]);
-      }
-    });
   }
 
   ngOnInit() {
+    console.log('----------PAGINA RS-----------');
+    this.getPregunta();
+    this.getRespuesta();
+    console.log(this.pregunta);
+    console.log(this.respuestaBbdd);
   }
 
-  mostrar(){
-    if (this.usuario.respuesta === this.user.respuesta){
+  validarRespuesta(){
+    if (this.respuestaBbdd === this.respuesta){
       //hacer redirect a correcto
-      const navigationExtras: NavigationExtras = {
-        state: {
-          user: this.user
-        }
-      };
-      this.router.navigate(['/correcto'], navigationExtras);
+      this.router.navigate(['/correcto']);
     }else{
-      const navigationExtras: NavigationExtras = {
-        state: {}
-      };
-      this.router.navigate(['/incorrecto'], navigationExtras);
+      this.router.navigate(['/incorrecto']);
     }
   }
 
@@ -60,8 +57,27 @@ export class IngresoRespuestaSecretaPage implements OnInit {
   }
 
   iniciarSesion() {
-    const navigationExtras: NavigationExtras = {
-        };
-    this.router.navigate(['/login'], navigationExtras);
+    this.storage.clear();
+    this.router.navigate(['/login']);
   }
+
+  getPregunta() {
+    this.storage.getItem('USER_DATA').then( resultado => {
+      console.log(eval(resultado.value)[0].preguntaSecreta);
+      this.pregunta = eval(resultado.value)[0].preguntaSecreta;
+    });
+    
+  }
+
+  getRespuesta() {
+    this.storage.getItem('USER_DATA').then( resultado => {
+      console.log(eval(resultado.value)[0].respuesta);
+      this.respuestaBbdd = eval(resultado.value)[0].respuesta;
+    });
+    
+  }
+
+
+
+
 }

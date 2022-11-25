@@ -6,13 +6,21 @@ import { IonicModule } from "@ionic/angular";
 import { InicioComponent } from "./inicio/inicio.component";
 import { MiClaseComponent } from "./mi-clase/mi-clase.component";
 import { ApiComponent } from "./api/api.component";
+<<<<<<< HEAD
 
+=======
+import { QrComponent } from "./qr/qr.component";
+>>>>>>> qrNativo
 
 @NgModule({
     declarations:[
         InicioComponent,
         MiClaseComponent,
         ApiComponent,
+<<<<<<< HEAD
+=======
+        QrComponent,
+>>>>>>> qrNativo
     ],
     imports:[
         CommonModule,
@@ -23,6 +31,10 @@ import { ApiComponent } from "./api/api.component";
         InicioComponent,
         MiClaseComponent,
         ApiComponent,
+<<<<<<< HEAD
+=======
+        QrComponent,
+>>>>>>> qrNativo
         FormsModule
     ]
 })

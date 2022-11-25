@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild,AfterViewInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario } from 'src/app/model/usuario';
 import { nivelEducacional } from '../../model/nivelEducacional';
 import { persona } from '../../model/persona';
 import { AnimationController } from '@ionic/angular';

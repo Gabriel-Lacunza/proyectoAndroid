@@ -10,7 +10,7 @@
         <ion-title class="titulo">
           <h1>Sistema de Asistencia DUOC</h1>
         </ion-title>
-        <ion-card-subtitle class="subtitulo">
+        <ion-card-subtitle class="subtitulo2">
           <h5>Recuperar contraseña</h5>
         </ion-card-subtitle>
         <ion-card-subtitle class="subtitulo">
@@ -18,11 +18,15 @@
         </ion-card-subtitle>
         <ion-item class="input">
           <ion-label position="stacked" class="lab-inp">Correo</ion-label>
+<<<<<<< HEAD
           <ion-input type="text" [(ngModel)]="usuario.nombreUsuario" placeholder="Ingresa tu correo" class="lab-inp"></ion-input>
+=======
+          <ion-input type="text" [(ngModel)]="this.correo" placeholder="Ingresa tu correo" class="lab-inp"></ion-input>
+>>>>>>> qrNativo
         </ion-item>
         <ion-row>
           <ion-col size="12">
-            <ion-button class="boton" shape="block" (click)="siguiente()">Recuperar contraseña</ion-button>
+            <ion-button class="boton" shape="block" (click)="buscarUsuario()">Recuperar contraseña</ion-button>
           </ion-col>
         </ion-row>
         <ion-title class="recuperar-pass">

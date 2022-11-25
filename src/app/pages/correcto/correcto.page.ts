@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario } from 'src/app/model/usuario';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-correcto',
@@ -9,28 +10,32 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 })
 export class CorrectoPage implements OnInit {
   public user : Usuario;
+  public password: string;
 
   constructor(
     private activeroute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private storage: StorageService,
   ) {
     const user = new Usuario;
+  }
 
-    this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state){
-        this.user = this.router.getCurrentNavigation().extras.state.user;
-      }else{
-        this.router.navigate(["/login"]);
-      }
+  ngOnInit() { 
+    this.getPassword();
+    this.storage.clear();
+  }
+
+  getPassword() {
+    this.storage.getItem('USER_DATA').then( resultado => {
+      console.log(eval(resultado.value)[0].password);
+      this.password = eval(resultado.value)[0].password;
     });
   }
 
-  ngOnInit() { }
-
   iniciarSesion() {
-    const navigationExtras: NavigationExtras = {
-        };
-    this.router.navigate(['/login'], navigationExtras);
+    this.router.navigate(['/login']);
   }
+
+
 
 }

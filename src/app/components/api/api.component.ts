@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+<<<<<<< HEAD
 import { APIClientService } from './../../service/apiclient.service';
+=======
+import { APIClientService } from './../../services/apiclient.service';
+>>>>>>> qrNativo
 
 @Component({
   selector: 'app-api',

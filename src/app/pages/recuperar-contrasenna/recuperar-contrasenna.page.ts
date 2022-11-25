@@ -1,7 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, Data } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
-import { buscarUsuario, Usuario } from 'src/app/model/Usuario';
+//import { buscarUsuario, Usuario } from 'src/app/model/Usuario';
+import {  Usuario } from 'src/app/model/usuario';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { DatabaseService } from 'src/app/services/database.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-recuperar-contrasenna',
@@ -10,35 +14,33 @@ import { buscarUsuario, Usuario } from 'src/app/model/Usuario';
 })
 export class RecuperarContrasennaPage implements OnInit {
   public usuario: Usuario;
+  public correo;
 
-  constructor(private router: Router, private toastController: ToastController, private alertController: AlertController) {
-    this.usuario = new Usuario();
-    this.usuario.nombreUsuario = '';
+  constructor(private router: Router, 
+    private auth: AuthenticationService, 
+    private readonly db: DatabaseService,
+    private readonly storage: StorageService) {
   }
 
   public ngOnInit(): void {
-    this.usuario.nombreUsuario = 'atorres@duocuc.cl';
-    this.usuario.password = '1234';
-
     // this.siguiente();
 
   }
 
-  siguiente() {
-    const users = buscarUsuario(this.usuario.nombreUsuario);
-      if (this.usuario.nombreUsuario === users.nombreUsuario){
-        const navigationExtras: NavigationExtras = {
-          state: {
-            user: users
-          }
-        };
-        this.router.navigate(['/rs'], navigationExtras);
+  buscarUsuario() {
+    // console.log(this.usuario.correo);
+    this.db.buscarCorreo(this.correo).then((res) => {
+      if(res.length > 0) {
+          this.storage.setItem('USER_DATA', JSON.stringify(res));
+          this.router.navigate(['rs']);
+      }else {
+        return;
       }
+    });
+
   }
 
   iniciarSesion() {
-    const navigationExtras: NavigationExtras = {
-        };
-    this.router.navigate(['/login'], navigationExtras);
+    this.auth.logout();
   }
 }
