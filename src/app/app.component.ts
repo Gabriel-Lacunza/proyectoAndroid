@@ -13,6 +13,7 @@ import { StorageService } from '../app/services/storage.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  title = "asistencia Duoc"
   
   constructor(
     private platform: Platform,

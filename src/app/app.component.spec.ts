@@ -2,22 +2,23 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import { Usuario } from './model/usuario';
 
-describe('AppComponent', () => {
 
-  beforeEach(waitForAsync(() => {
 
-    TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
-  }));
+describe("probar usuarios", () => {
+  const usuario = new Usuario()
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  it("debería no pedirme un correo", () => {
+    expect(usuario.validateEmail("gab.lacunza@duocuc.cl")).toEqual("");
   });
-  // TODO: add more tests!
+  
+  it("debería no pedirme un nombre", () => {
+    expect(usuario.validateName("gabriel")).toEqual("");
+  });
+
+  it("debería pedir una respuesta secreta", () => {
+    expect(usuario.validateSecretAnswer("")).toContain('Debe ingresar su respuesta secreta.');
+  })
 
 });

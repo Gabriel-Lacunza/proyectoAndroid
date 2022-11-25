@@ -17,7 +17,7 @@ import { capSQLiteChanges } from '@capacitor-community/sqlite';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage{
+export class LoginPage implements OnInit {
  
   public usuario: Usuario;
   correo: string = '';
@@ -30,19 +30,21 @@ export class LoginPage{
   const prefersDark = window.matchMedia('prefers-color-scheme: dark');
   this.darkMode = prefersDark.matches;
   
-}
-
-intercambiarModoOscuro(event) {
-  if (event.detail.checked) {
-    document.body.setAttribute('color-theme', 'dark');
-  } else {
-    document.body.setAttribute('color-theme', 'light');
   }
-}
 
-async ingresar() {
-  this.auth.login(this.correo, this.password);
-}
+  ngOnInit() {}
+
+  intercambiarModoOscuro(event) {
+    if (event.detail.checked) {
+      document.body.setAttribute('color-theme', 'dark');
+    } else {
+      document.body.setAttribute('color-theme', 'light');
+    }
+  }
+
+  async ingresar() {
+    this.auth.login(this.correo, this.password);
+  }
  //--------------------------------------------------------------------------------------------
   async mostrarMensaje(mensaje: string, duracion?: number) {
     const toast = await this.toastController.create({
