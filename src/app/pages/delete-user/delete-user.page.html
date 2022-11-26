@@ -1,20 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Asistencia DUOC</ion-title>
+    <img src="assets/img/logo.png" class="logo">
   </ion-toolbar>
   <ion-toolbar>
     <ion-title>
       Eliminación de usuarios
-      <br>
-      <span class="cantidad-usuarios" *ngIf="cantidad === 0">
-        No existen usuarios en la base de datos
-      </span>
-      <span class="cantidad-usuarios" *ngIf="cantidad === 1">
-        Existe 1 usuario en la base de datos
-      </span>
-      <span class="cantidad-usuarios" *ngIf="cantidad > 1">
-        Existen {{cantidad}} usuario en la base de datos
-      </span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -23,31 +13,35 @@
 
   <a id="topOfPage" href="#topOfPage"></a>
  
-  <ion-card *ngFor="let u of usuarios; let i=index; trackBy: getUserId">
+  <ion-card class="card" *ngFor="let u of usuarios; let i=index; trackBy: getUserId">
 
     <ion-card-header>
-      <h4>{{u.nombre}}</h4>
+      <h4 class="name" >{{u.nombreUsuario}}</h4>
     </ion-card-header>
   
     <ion-card-content>
       <ion-grid fixed>
         <ion-row>
-          <ion-col size="6">Correo</ion-col>
+          <ion-col class="title-inputs" size="6">Correo</ion-col>
           <ion-col size="6">{{u.correo}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6">Contraseña</ion-col>
-          <ion-col size="6">{{u.password}}</ion-col>
+          <ion-col class="title-inputs" size="6">Contraseña</ion-col>
+          <ion-col size="6">*********</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6">Pregunta secreta</ion-col>
+          <ion-col class="title-inputs" size="6">Pregunta secreta</ion-col>
           <ion-col size="6">{{u.preguntaSecreta}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col size="6">Respuesta secreta</ion-col>
-          <ion-col size="6">{{u.respuestaSecreta}}</ion-col>
+          <ion-col class="title-inputs" size="6">Respuesta secreta</ion-col>
+          <ion-col size="6">*********</ion-col>
         </ion-row>
       </ion-grid>
+
+      <ion-button class="boton-edit" (click)="eliminarUsuario(u)">
+        Eliminar Usuario<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
       
     </ion-card-content>
 
@@ -55,9 +49,7 @@
       <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
     </ion-button> -->
 
-    <ion-button (click)="eliminarUsuario(u)">
-      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-    </ion-button>
+
 
   </ion-card>
 
@@ -65,7 +57,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button (click)="volver()" expand="block" fill="clear" shape="round">
+    <ion-button class="btn_volver" (click)="volver()" expand="block" fill="clear" shape="round">
       Volver
     </ion-button>
   </ion-toolbar>

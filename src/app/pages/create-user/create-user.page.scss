@@ -57,6 +57,8 @@ ion-item{
     text-shadow: 2px 2px 4px #000000;
     margin-top: 10px;
     font-family: 'Source Sans Pro', sans-serif;
+    align-items: center;
+    align-content: center;
 }
 
 .password {
@@ -100,20 +102,29 @@ a {
     --ion-toolbar-background: rgba(243, 243, 242, 0.2);
     color: white;
     font-family: 'Calibri';
+    background-color: rgba(243, 243, 242, 0.2);;
+}
+
+.filter-label {
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    font-family: 'Calibri';
+    background-color: rgba(243, 243, 242, 0);;
 }
 
 .titulo {
     font-family: 'Source Sans Pro', sans-serif;
+    padding-top: 1rem;
     text-align: center;
-    font-size: 20px;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
+    font-size: x-large;
+    color: #020B25;
+    font-weight:bolder
+    ;
 }
 
 .logo{
-    width: 70%;
-    display: block;
-    margin-left: auto;
+    width: 30%;
+    margin-left: 1rem;
     margin-right: auto;
     margin-bottom: 7px;
 }
@@ -136,6 +147,7 @@ a {
 
 .title-inputs{
     font-family: 'Source Sans Pro', sans-serif;
+    color: #020B25;
 }
 
 #container2 {

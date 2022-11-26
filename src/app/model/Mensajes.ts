@@ -6,7 +6,7 @@ export var showLogs: boolean = true;
 
 
 export function getAppName(): string {
-    return '<<Here I am>>';
+    return 'Asistencia Duoc UC';
 }
 
 export function log(source: string, message: string, returnValue?: boolean) {
