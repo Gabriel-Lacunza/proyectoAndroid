@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { NoEncontradoPage } from './no-encontrado.page';
 
-describe('NoEncontradoPage', () => {
+describe('Probando pagina "No-encontrado"', () => {
   let component: NoEncontradoPage;
   let fixture: ComponentFixture<NoEncontradoPage>;
 
@@ -18,7 +18,7 @@ describe('NoEncontradoPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it('Deberia crear pagina "No-encontrado"', () => {
     expect(component).toBeTruthy();
   });
 });

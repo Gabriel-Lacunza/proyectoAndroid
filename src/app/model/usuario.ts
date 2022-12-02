@@ -43,9 +43,14 @@ export class Usuario {
   
     validatePassword(password: string): string {
       if (password.trim() === '') return 'Para entrar al sistema debe ingresar la contraseña.';
+      if (this.password.length !== 4) return 'La contraseña debe ser numérica de 4 dígitos.';
+      for(let i = 0; i < this.password.length; i++) {
+        if ('0123456789'.indexOf(this.password.charAt(i)) === -1) {
+          return 'La contraseña solo es numerica';
+        }
+      }
       return '';
     }
-
     
     validateName(nombre: string): string {
       if (nombre.trim() === '') return 'Debe ingresar su nombre.';

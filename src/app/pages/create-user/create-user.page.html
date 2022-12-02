@@ -1,30 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Asistencia DUOC</ion-title>
+    <img src="assets/img/logo.png" class="logo">
   </ion-toolbar>
   <ion-toolbar>
     <ion-title>
       Registro de usuario
-      <br>
-      <span class="cantidad-usuarios" *ngIf="cantidad === 0">
-        No existen usuarios en la base de datos
-      </span>
-      <span class="cantidad-usuarios" *ngIf="cantidad === 1">
-        Existe 1 usuario en la base de datos
-      </span>
-      <span class="cantidad-usuarios" *ngIf="cantidad > 1">
-        Existen {{cantidad}} usuario en la base de datos
-      </span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
   <div class="ion-padding-vertical">
-    <ion-card class="ion-text-center" class="filter">
+    <ion-card class="filter">
       <ion-card-title class="ion-text-center">
         <ion-label>
-          <h1>Ingresa tus datos</h1>
+          <h1 class="titulo">Ingresa tus datos</h1>
         </ion-label>
       </ion-card-title>
       <ion-card-content>
@@ -49,9 +39,9 @@
           <ion-input class="title-inputs" type="text" placeholder="Ingrese su Respuesta secreta" [(ngModel)]="respuesta"></ion-input>
         </ion-item>
       </ion-card-content>
-      <ion-button shape="block" (click)="registerNewUser()">Registrar</ion-button>
-      <ion-button shape="block" (click)="createTestingUsers()">Crear usuarios de prueba</ion-button>
-      <ion-button shape="block" (click)="goToLogin()">Volver</ion-button>
+      <ion-button class="login" shape="block" (click)="registerNewUser()">Registrar</ion-button>
+      <!-- <ion-button class="login" shape="block" (click)="createTestingUsers()">Crear usuarios de prueba</ion-button> -->
+      <ion-button class="login" shape="block" (click)="goToLogin()">Volver</ion-button>
     </ion-card>
   </div>
 </ion-content>

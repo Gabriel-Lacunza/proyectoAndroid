@@ -7,7 +7,7 @@ describe("ion-title", () => {
 
     //prueba 1
     it("La pestaña login se muestra por defecto", () => {
-        expect(element(by.css("ion-title a")).getText()).toContain("Recuperar contraseña");
+        expect(element(by.css("titulo h1")).getText()).toContain("Sistema de Asistencia DUOC");
     });
 
     it("El usuario puede navegar a la pestaña recuperar contraseña", async () => {
