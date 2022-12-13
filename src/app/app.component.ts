@@ -52,7 +52,7 @@ export class AppComponent {
 
       log('StartApp', 'Plataforma lista');
 
-      this.db.StartDatabaseService(false).then(async (isRunning) => {
+      this.db.StartDatabaseService().then(async (isRunning) => {
         log('StartApp', isRunning? 'Servicio de BD iniciado': 'Servicio de BD no iniciado');
         await this.authenticationService.StartAuthService();
       });

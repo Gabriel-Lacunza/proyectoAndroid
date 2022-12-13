@@ -135,24 +135,30 @@ export class AuthenticationService {
     async login(mail: string, password: string) {
         try {
             this.db.readUser(mail, password, false).then( async (res) => {
-                if(res.length > 0) {
-                    let data = res[0];
-                    const usu = new Usuario();
-                    usu.setUser(
-                        data.correo,
-                        data.password,
-                        data.nombreUsuario,
-                        data.preguntaSecreta,
-                        data.respuestaSecreta,
-                        'S', 
-                        true
-                    );
-                    await this.storage.clear();
-                    await this.db.updateActiveSession(mail, 'S');
-                    this.storage.setItem('USER_DATA', JSON.stringify(usu));
-                    this.AuthenticationService.next(true);
-                    this.router.navigate(['/home/inicio']);
-                    return;
+                if (mail.length > 0 && password.length > 0) {
+                    if(res.length > 0) {
+                        let data = res[0];
+                        const usu = new Usuario();
+                        usu.setUser(
+                            data.correo,
+                            data.password,
+                            data.nombreUsuario,
+                            data.preguntaSecreta,
+                            data.respuestaSecreta,
+                            'S', 
+                            true
+                        );
+                        await this.storage.clear();
+                        await this.db.updateActiveSession(mail, 'S');
+                        this.storage.setItem('USER_DATA', JSON.stringify(usu));
+                        this.AuthenticationService.next(true);
+                        this.router.navigate(['/home/inicio']);
+                        return;
+                    } else {
+                        showToast(`Correo o contraseña incorrecta`);
+                    }
+                } else {
+                    showToast(`Por favor ingrese todos sus datos`);
                 }
             })
         }catch(err) {
