@@ -64,8 +64,8 @@ export class DatabaseService {
         alert(message);
     }
 
-    StartDatabaseService(createDatabaseFromScratch: boolean): Promise<boolean> {
-        return this.sqlite.StartSQLiteService(this.createSchema, createDatabaseFromScratch, 'StartDatabaseService');
+    StartDatabaseService(): Promise<boolean> {
+        return this.sqlite.StartSQLiteService(this.createSchema,'StartDatabaseService');
     }
 
     async createUser(correo: string, password: string, nombreUsuario: string, preguntaSecreta: string, respuesta: string, sesionActiva: string): Promise<capSQLiteChanges> {

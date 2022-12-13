@@ -1,5 +1,5 @@
 {
-  "name": "ProIonicLacDuran",
+  "name": "RegistrAPP Duoc",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -23,6 +23,7 @@
     "@capacitor-community/sqlite": "^4.2.2",
     "@capacitor/android": "4.0.1",
     "@capacitor/app": "^4.0.1",
+    "@capacitor/assets": "^2.0.4",
     "@capacitor/core": "^4.1.0",
     "@capacitor/haptics": "^4.0.1",
     "@capacitor/keyboard": "^4.0.1",

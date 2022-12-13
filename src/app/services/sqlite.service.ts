@@ -29,7 +29,7 @@ export class SQLiteService {
 
     constructor() { }
 
-    StartSQLiteService(createSchema: string, createDatabaseFromScratch: boolean, callee: string): Promise<boolean> {
+    StartSQLiteService(createSchema: string, callee: string): Promise<boolean> {
 
         this.database = 'asistencia';
         this.encrypted = false;
@@ -49,14 +49,8 @@ export class SQLiteService {
                 await this.capacitorSQLitePlugin.closeConnection(this.dbOptions).catch((reason) => console.log(reason))
                 this.sqlite = new SQLiteConnection(this.capacitorSQLitePlugin);
                 this.db = await this.createConnection();
-                if (createDatabaseFromScratch) await this.deleteDatabase();
                 this.db.open();
-                if (createDatabaseFromScratch) {
-                    await this.db.execute(createSchema);
-                    await this.createUser('atorres@duocuc.cl', '1234', 'Ana Torres Leiva', '¿Cuál es tu animal favorito?', 'gato', 'S');
-                    await this.createUser('jperez@duocuc.cl', '5678', 'Juan Pérez González', '¿Cuál es tu postre favorito?', 'panqueques', 'N');
-                    await this.createUser('cmujica@duocuc.cl', '0987', 'Carla Mujica Sáez', '¿Cuál es tu vehículo favorito?', 'moto', 'N');
-                }
+                await this.db.execute(createSchema);
                 const rs: DBSQLiteValues = await this.query(this.sqlSelectAllUsers);
                 log('StartSQLiteService', `Cantidad de usuarios: ${rs.values.length}`);
                 rs.values.forEach((value, index) => {
