@@ -97,7 +97,7 @@ export async function showAlertYesNoDUOC(message: string): Promise<MessageEnum> 
     return new Promise((resolve) => {
         if (message.trim() === '') resolve(MessageEnum.CANCEL);
         let alert = new AlertController().create({
-            header: 'App Estoy Presente', message, 
+            header: 'ResgistraApp Duoc', message, 
             buttons: [
                 { text: 'Sí', handler: () => { resolve(MessageEnum.YES); } },
                 { text: 'No', handler: () => { resolve(MessageEnum.NO) } },
